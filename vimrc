@@ -2,6 +2,7 @@ set nocompatible                  " Must come first because it changes other opt
 
 silent! call pathogen#runtime_append_all_bundles()
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set runtimepath+=~/.vim/ultisnips_rep
 
 set undofile
 syntax enable                     " Turn on syntax highlighting.
@@ -213,9 +214,5 @@ let delimitMate_expand_cr = 1
 let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
 
-" SuperTab Omnicomplete
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabLongestHighlight = 1
-let g:SuperTabLongestEnhanced = 0
-let g:SuperTabCrMapping = 0
+" Ultisnips
+let g:UltisnipsListSnippets="<leader><tab>"
