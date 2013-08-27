@@ -13,3 +13,6 @@
 [submodule "vim/bundle/git-vim.git"]
 	path = vim/bundle/git-vim.git
 	url = git@github.com:motemen/git-vim.git
+[submodule "vim/bundle/MatchTagAlways.git"]
+	path = vim/bundle/MatchTagAlways.git
+	url = git@github.com:Valloric/MatchTagAlways.git
