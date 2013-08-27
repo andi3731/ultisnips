@@ -64,3 +64,9 @@
 [submodule "vim/bundle/bufexplorer.git"]
 	path = vim/bundle/bufexplorer.git
 	url = git@github.com:corntrace/bufexplorer.git
+[submodule "vim/bundle/neocomplete-ultisnips.git"]
+	path = vim/bundle/neocomplete-ultisnips.git
+	url = git@github.com:asmod3us/neocomplete-ultisnips.git
+[submodule "vim/bundle/neocomplcache.vim.git"]
+	path = vim/bundle/neocomplcache.vim.git
+	url = git@github.com:Shougo/neocomplcache.vim.git
