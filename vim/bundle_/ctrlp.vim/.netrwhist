@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/media/proj/learn_ruby'
+let g:netrw_dirhist_2='/home/andrei/dotfiles/vim/bundle/snipmate.vim/snippets'
+let g:netrw_dirhist_3='/media/proj/prog_web/day_7/exercise'
