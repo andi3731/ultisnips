@@ -215,4 +215,7 @@ let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
 
 " Ultisnips
-let g:UltisnipsListSnippets="<leader><tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+map <Leader>m :call UltiSnips_ListSnippets()<cr>
