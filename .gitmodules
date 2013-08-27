@@ -25,3 +25,6 @@
 [submodule "vim/bundle/syntastic.git"]
 	path = vim/bundle/syntastic.git
 	url = git@github.com:scrooloose/syntastic.git
+[submodule "vim/bundle/tabular.git"]
+	path = vim/bundle/tabular.git
+	url = git@github.com:godlygeek/tabular.git
