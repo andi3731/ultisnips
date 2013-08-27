@@ -1,3 +1,12 @@
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim
+[submodule "vim/bundle/delimitMate.git"]
+	path = vim/bundle/delimitMate.git
+	url = git@github.com:Raimondi/delimitMate.git
+[submodule "vim/bundle/emmet-vim.git"]
+	path = vim/bundle/emmet-vim.git
+	url = git@github.com:mattn/emmet-vim.git
+[submodule "vim/bundle/vim-endwise.git"]
+	path = vim/bundle/vim-endwise.git
+	url = git@github.com:tpope/vim-endwise.git
