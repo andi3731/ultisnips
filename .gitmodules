@@ -55,3 +55,6 @@
 [submodule "vim/bundle/vim-rooter.git"]
 	path = vim/bundle/vim-rooter.git
 	url = git@github.com:airblade/vim-rooter.git
+[submodule "vim/bundle/neocomplete.vim.git"]
+	path = vim/bundle/neocomplete.vim.git
+	url = git@github.com:Shougo/neocomplete.vim.git
