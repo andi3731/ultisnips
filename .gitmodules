@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-makegreen.git"]
 	path = vim/bundle/vim-makegreen.git
 	url = git@github.com:reinh/vim-makegreen.git
+[submodule "vim/bundle/vim-markdown.git"]
+	path = vim/bundle/vim-markdown.git
+	url = git@github.com:plasticboy/vim-markdown.git
