@@ -1,2 +1,0 @@
-2.0
-{'vimproc': {'checked_time': 1377589192, 'installed_uri': 'https://github.com/Shougo/vimproc.git', 'installed_path': '/home/andrei/.vim/bundle/vimproc', 'updated_time': '1375406224'}, 'neobundle.vim': {'checked_time': 1377589186, 'installed_uri': 'https://github.com/Shougo/neobundle.vim.git', 'installed_path': '/home/andrei/.vim/bundle/neobundle.vim', 'updated_time': 1377589186}, 'ctrlp-z': {'checked_time': 1377591020, 'installed_uri': 'https://github.com/ompugao/ctrlp-z.git', 'installed_path': '/home/andrei/.vim/bundle/ctrlp-z', 'updated_time': '1373122062'}}
