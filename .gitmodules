@@ -22,3 +22,6 @@
 [submodule "vim/bundle/nerdtree.git"]
 	path = vim/bundle/nerdtree.git
 	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/bundle/syntastic.git"]
+	path = vim/bundle/syntastic.git
+	url = git@github.com:scrooloose/syntastic.git
