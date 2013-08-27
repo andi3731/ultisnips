@@ -69,8 +69,8 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 
 " Or use vividchalk
 set background=dark
-"colorscheme tomorrow_night          " Tomorrow Theme
-colorscheme molokai
+colorscheme tomorrow_night          " Tomorrow Theme
+"colorscheme molokai
 
 au BufRead,BufNewFile *.ru setfiletype ruby
 
@@ -216,8 +216,8 @@ let g:NERDTreeHijackNetrw=0
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 map <Leader>m :call UltiSnips_ListSnippets()<cr>
 
 " Neocomplete
@@ -230,12 +230,6 @@ let g:neocomplcache_enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 0
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
