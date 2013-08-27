@@ -58,3 +58,6 @@
 [submodule "vim/bundle/neocomplete.vim.git"]
 	path = vim/bundle/neocomplete.vim.git
 	url = git@github.com:Shougo/neocomplete.vim.git
+[submodule "vim/bundle/ultisnips.git"]
+	path = vim/bundle/ultisnips.git
+	url = git@github.com:SirVer/ultisnips.git
