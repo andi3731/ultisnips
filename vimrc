@@ -231,3 +231,4 @@ let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc
 
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
+map <leader>w <c-w>w
