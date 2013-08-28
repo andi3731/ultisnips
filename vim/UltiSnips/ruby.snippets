@@ -1,3 +1,15 @@
 snippet lam "Ruby lambda" w
 lambda { |${1:v}| ${2:code} }${3}
 endsnippet
+
+snippet la "Multiline lambda" w
+->${1:(${2:var})} do
+  $0
+end
+endsnippet
+
+snippet mod "Basic module" w
+module ${1:Module}
+  $0
+end
+endsnippet
