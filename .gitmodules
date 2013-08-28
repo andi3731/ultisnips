@@ -60,7 +60,7 @@
 	url = git@github.com:Shougo/neocomplete.vim.git
 [submodule "vim/bundle/ultisnips.git"]
 	path = vim/bundle/ultisnips.git
-	url = git@github.com:SirVer/ultisnips.git
+	url = git@github.com:andi3731/ultisnips.git
 [submodule "vim/bundle/bufexplorer.git"]
 	path = vim/bundle/bufexplorer.git
 	url = git@github.com:corntrace/bufexplorer.git
