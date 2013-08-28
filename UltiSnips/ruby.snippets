@@ -572,4 +572,230 @@ snippet ###
 =end
 endsnippet
 
+##########################
+#     Rspec snippets     #
+##########################
+snippet desc "desc"
+describe ${1:class_name} do
+	${2}
+end
+endsnippet
+
+snippet descm "descm"
+describe "${1:#method}" do
+	${2:pending "Not implemented"}
+end
+endsnippet
+
+snippet cont "cont"
+context "${1:message}" do
+	${2}
+end
+endsnippet
+
+snippet bef "bef"
+before :${1:each} do
+	${2}
+end
+endsnippet
+
+snippet aft "aft"
+after :${1:each} do
+	${2}
+end
+endsnippet
+
+snippet let "let"
+let(:${1:object}) ${2}
+endsnippet
+
+snippet let! "let!"
+let!(:${1:object}) ${2}
+endsnippet
+
+snippet subj "subj"
+subject { ${1} }
+endsnippet
+
+snippet s. "s."
+subject.${1:method}
+endsnippet
+
+snippet spec "spec"
+specify { subject.${1} }
+endsnippet
+
+snippet exp "exp"
+expect { ${1:object} }.to ${2}
+endsnippet
+
+snippet raise "raise"
+expect { ${1:object} }.to raise_error ${2:StandardError}, /${3:message_regex}/
+endsnippet
+
+snippet shared "shared"
+shared_examples ${1:"shared examples name"}
+endsnippet
+
+snippet ibl "ibl"
+it_behaves_like ${1:"shared examples name"}
+endsnippet
+
+snippet it "it"
+it "${1:spec_name}" do
+	${2}
+end
+endsnippet
+
+snippet its "its"
+its(:${1:method}) { should ${2} }
+endsnippet
+
+snippet is "is"
+it { should ${1} }
+endsnippet
+
+snippet isn "isn"
+it { should_not ${1} }
+endsnippet
+
+#ShouldaMatchers#ActionController
+snippet isfp "isfp"
+it { should filter_param :${1:key} }
+endsnippet
+
+snippet isrt "isrt"
+it { should redirect_to ${1:url} }
+endsnippet
+
+snippet isrtp "isrtp"
+it { should render_template ${1} }
+endsnippet
+
+snippet isrwl "isrwl"
+it { should render_with_layout ${1} }
+endsnippet
+
+snippet isrf "isrf"
+it { should rescue_from ${1:exception} }
+endsnippet
+
+snippet isrw "isrw"
+it { should respond_with ${1:status} }
+endsnippet
+
+snippet isr "isr"
+it { should route(:${1:method}, '${2:path}') }
+endsnippet
+
+snippet isss "isss"
+it { should set_session :${1:key} }
+endsnippet
+
+snippet issf "issf"
+it { should set_the_flash('${1}') }
+endsnippet
+
+#ShouldaMatchers#ActiveModel
+snippet isama "isama"
+it { should allow_mass_assignment_of :${1} }
+endsnippet
+
+snippet isav "isav"
+it { should allow_value(${1}).for :${2} }
+endsnippet
+
+snippet isee "isee"
+it { should ensure_exclusion_of :${1} }
+endsnippet
+
+snippet isei "isei"
+it { should ensure_inclusion_of :${1} }
+endsnippet
+
+snippet isel "isel"
+it { should ensure_length_of :${1} }
+endsnippet
+
+snippet isva "isva"
+it { should validate_acceptance_of :${1} }
+endsnippet
+
+snippet isvc "isvc"
+it { should validate_confirmation_of :${1} }
+endsnippet
+
+snippet isvn "isvn"
+it { should validate_numericality_of :${1} }
+endsnippet
+
+snippet isvp "isvp"
+it { should validate_presence_of :${1} }
+endsnippet
+
+snippet isvu "isvu"
+it { should validate_uniqueness_of :${1} }
+endsnippet
+
+#ShouldaMatchers#ActiveRecord
+snippet isana "isana"
+it { should accept_nested_attributes_for :${1} }
+endsnippet
+
+snippet isbt "isbt"
+it { should belong_to :${1} }
+endsnippet
+
+snippet isbtcc "isbtcc"
+it { should belong_to(:${1}).counter_cache ${2:true} }
+endsnippet
+
+snippet ishbtm "ishbtm"
+it { should have_and_belong_to_many :${1} }
+endsnippet
+
+snippet isbv "isbv"
+it { should be_valid }${1}
+endsnippet
+
+snippet ishc "ishc"
+it { should have_db_column :${1} }
+endsnippet
+
+snippet ishi "ishi"
+it { should have_db_index :${1} }
+endsnippet
+
+snippet ishm "ishm"
+it { should have_many :${1} }
+endsnippet
+
+snippet ishmt "ishmt"
+it { should have_many(:${1}).through :${2} }
+endsnippet
+
+snippet isho "isho"
+it { should have_one :${1} }
+endsnippet
+
+snippet ishro "ishro"
+it { should have_readonly_attribute :${1} }
+endsnippet
+
+snippet iss "iss"
+it { should serialize :${1} }
+endsnippet
+
+snippet isres "isres"
+it { should respond_to :${1} }
+endsnippet
+
+snippet isresw "isresw"
+it { should respond_to(:${1}).with(${2}).arguments }
+endsnippet
+
+snippet super_call "super_call"
+${1:super_class}.instance_method(:${2:method}).bind(self).call
+endsnippet
+
 # vim: set ts=2 sw=2 expandtab:
