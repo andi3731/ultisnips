@@ -2,6 +2,7 @@
 #                    GENERATED FROM get_tm_snippets.py                    #
 ###########################################################################
 
+
 snippet anaf "accepts_nested_attributes_for"
 accepts_nested_attributes_for :${1:association_name}${2:${3:, :allow_destroy => true}${4:, :reject_if => proc \{ |obj| ${5:obj.blank?} \}}}
 
@@ -205,8 +206,16 @@ snippet mtab "Migration Drop Create Table (mdct)"
 drop_table :${1:table}${2: [press tab twice to generate create_table]}
 endsnippet
 
-snippet mcol "Migration Remove and Add Column (mrac)"
-remove_column :${1:table}, :${2:column}${3: [press tab twice to generate add_column]}
+snippet mcolr "Migration Remove and Add Column (mrac)"
+remove_column :${1:table}, :${2:column}
+endsnippet
+
+snippet mcola "Migration Remove and Add Column (mrac)"
+add_column :${1:table}, :${2:column}, :${3:type}
+endsnippet
+
+snippet rd "redirect" w
+redirect_to ${1}
 endsnippet
 
 snippet rdb "RAILS_DEFAULT_LOGGER.debug (rdb)"
@@ -493,6 +502,10 @@ endsnippet
 
 snippet flash "flash[...]"
 flash[:${1:notice}] = "${2:Successfully created...}"$0
+endsnippet
+
+snippet pa "params hash for rails" w
+params[:${1:id}]$0
 endsnippet
 
 snippet rea "redirect_to (action)"
@@ -901,6 +914,14 @@ snippet route_spec
 it 'routes to #${1:action}' do
   ${2:get}('/${3:url}').should route_to('`!v substitute(expand('%:t:r'), '_routing_spec$', '', '')`#$1'${4:, ${5:params}})${6}
 end
+endsnippet
+
+snippet i "short it" w
+it { should $1 }$0
+endsnippet
+
+snippet in "short it no" w
+it { should_not $1 }$0
 endsnippet
 
 # vim:ft=snippets:

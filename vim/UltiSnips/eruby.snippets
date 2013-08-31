@@ -28,6 +28,20 @@ endglobal
 #            GENERATED FROM get_tm_snippets.py + REGEX REPLACE            #
 ###########################################################################
 
+snippet pe "print expr" w
+<%= ${1} %>$0
+endsnippet
+
+snippet er "eval expr" w
+<% ${1} %>$0
+endsnippet
+
+snippet each "each loop" w
+<% ${1:obj}.each do |${2:arg}| %>
+  ${0}
+<% end %>
+endsnippet
+
 snippet fi "<%= Fixtures.identify(:symbol) %>"
 `!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`Fixtures.identify(:${1:name})`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`$0
 endsnippet
@@ -39,7 +53,7 @@ snippet ft "form_tag"
 endsnippet
 
 snippet end "end (ERB)"
-<% end -%>
+`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_BLOCK', snip)`
 endsnippet
 
 snippet for "for loop (ERB)"
@@ -203,6 +217,10 @@ snippet lip "link_to (path)"
 `!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`link_to ${1:"${2:link text...}"}, ${3:${12:model}_path(${13:@}${14:${12}})}`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`
 endsnippet
 
+snippet lt "link_to (path)"
+`!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`link_to ${1:"${2:link text...}"}, ${3:${12:model}_path(${13:@}${14:${12}})}`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`
+endsnippet
+
 snippet lim "link_to model"
 `!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`link_to ${1:model}.${2:name}, ${3:${4:$1}_path(${14:$1})}`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`
 endsnippet
@@ -233,6 +251,10 @@ endsnippet
 
 snippet vis "page.visual_effect (effect, id)"
 page.visual_effect :${1:toggle_slide}, ${2:"${3:DOM ID}"}
+endsnippet
+
+snippet rs "render (string)"
+`!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`render '${1:str}'`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`$0
 endsnippet
 
 snippet rp "render (partial) (rp)"
