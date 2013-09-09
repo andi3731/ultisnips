@@ -5,6 +5,7 @@ set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 
 set undofile
+set undodir=/tmp/vimundo
 syntax enable                     " Turn on syntax highlighting.
 filetype off
 filetype on

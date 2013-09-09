@@ -3,7 +3,9 @@ snippet "^#!" "#!/usr/bin/env ruby" r
 $0
 endsnippet
 
-
+snippet b "a block" w
+{ ${1:|${2:v}|} $3 }$0
+endsnippet
 
 snippet "^# ?[uU][tT][fF]-?8" "# encoding: UTF-8" r
 # encoding: UTF-8
