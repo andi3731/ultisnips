@@ -82,3 +82,6 @@
 [submodule "vim/bundle/vim-multiple-cursors.git"]
 	path = vim/bundle/vim-multiple-cursors.git
 	url = git@github.com:terryma/vim-multiple-cursors.git
+[submodule "vim/bundle/vim-golang.git"]
+	path = vim/bundle/vim-golang.git
+	url = git@github.com:jnwhiteh/vim-golang.git
