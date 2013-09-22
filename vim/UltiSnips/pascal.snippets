@@ -1,0 +1,45 @@
+snippet prog "basic program" !b
+Program ${1:program_name};
+${2:variable declaration}
+begin
+	${0}
+end.
+endsnippet
+
+snippet b "a block" w
+begin
+  ${1}
+end${0:;}
+endsnippet
+
+snippet if "basic if" w
+if ${1:cond} then
+  ${0}
+endsnippet
+
+snippet ife "if with else" w
+if ${1:cond} then
+  begin
+    ${2}
+  end
+else
+  begin
+    ${3}
+  end;$0
+endsnippet
+
+snippet r "read" w
+read(${1});$0
+endsnippet
+
+snippet rl "readln" w
+readln(${1});$0
+endsnippet
+
+snippet w "write" w
+write(${1});$0
+endsnippet
+
+snippet wl "writeln" w
+writeln(${1});$0
+endsnippet

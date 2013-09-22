@@ -85,3 +85,6 @@
 [submodule "vim/bundle/vim-golang.git"]
 	path = vim/bundle/vim-golang.git
 	url = git@github.com:jnwhiteh/vim-golang.git
+[submodule "vim/bundle/vim-ruby-xmpfilter.git"]
+	path = vim/bundle/vim-ruby-xmpfilter.git
+	url = git@github.com:t9md/vim-ruby-xmpfilter.git
