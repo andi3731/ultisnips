@@ -236,3 +236,9 @@ map <leader>w <c-w>w
 
 " toggle Fold
 nnoremap <Space> za
+
+" xmpfilter
+autocmd FileType ruby nmap <buffer> <C-m> <Plug>(xmpfilter-run)
+autocmd FileType ruby xmap <buffer> <C-m> <Plug>(xmpfilter-run)
+autocmd FileType ruby imap <buffer> <C-m> <Plug>(xmpfilter-run)
+
