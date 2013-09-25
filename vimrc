@@ -74,8 +74,11 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 
 " Or use vividchalk
 set background=dark
-colorscheme tomorrow_night          " Tomorrow Theme
-"colorscheme molokai
+if !has("gui_running")
+  colorscheme tomorrow_night          " Tomorrow Theme
+else
+  colorscheme solarized
+endif
 
 au BufRead,BufNewFile *.ru setfiletype ruby
 
