@@ -4,6 +4,10 @@ silent! call pathogen#runtime_append_all_bundles()
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 
+set linespace=5
+set guioptions-=T
+set guioptions-=r
+
 set undofile
 set undodir=/tmp/vimundo
 syntax enable                     " Turn on syntax highlighting.
@@ -238,7 +242,14 @@ map <leader>w <c-w>w
 nnoremap <Space> za
 
 " xmpfilter
-autocmd FileType ruby nmap <buffer> <C-m> <Plug>(xmpfilter-run)
-autocmd FileType ruby xmap <buffer> <C-m> <Plug>(xmpfilter-run)
-autocmd FileType ruby imap <buffer> <C-m> <Plug>(xmpfilter-run)
+nmap <F5> <Plug>(xmpfilter-run)
+imap <F5> <Plug>(xmpfilter-run)
 
+function Ruby_eval()
+  let curline=line(".")
+  normal A #	€k5ggVG:Tab /# =>
+  execute 'silent '.curline
+  unlet curline
+endfunction
+
+autocmd FileType ruby map <F4> :call Ruby_eval()<cr>

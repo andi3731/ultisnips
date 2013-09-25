@@ -88,3 +88,6 @@
 [submodule "vim/bundle/vim-ruby-xmpfilter.git"]
 	path = vim/bundle/vim-ruby-xmpfilter.git
 	url = git@github.com:t9md/vim-ruby-xmpfilter.git
+[submodule "vim/bundle/vim-css-color.git"]
+	path = vim/bundle/vim-css-color.git
+	url = git@github.com:skammer/vim-css-color.git
