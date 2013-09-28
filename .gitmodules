@@ -100,3 +100,6 @@
 [submodule "vim/bundle/vim-shell.git"]
 	path = vim/bundle/vim-shell.git
 	url = git@github.com:xolox/vim-shell.git
+[submodule "vim/bundle/vim-misc.git"]
+	path = vim/bundle/vim-misc.git
+	url = git@github.com:xolox/vim-misc.git
