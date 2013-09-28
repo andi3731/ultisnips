@@ -4,9 +4,14 @@ silent! call pathogen#runtime_append_all_bundles()
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 
-set linespace=5
+set linespace=10
 set guioptions-=T
+set guioptions-=L
 set guioptions-=r
+set guioptions+=lrb
+set guioptions-=lrb
+autocmd GUIEnter * set vb t_vb= " for your GUI
+autocmd VimEnter * set vb t_vb=
 
 set undofile
 set undodir=/tmp/vimundo
@@ -75,9 +80,9 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 " Or use vividchalk
 set background=dark
 if !has("gui_running")
-  colorscheme tomorrow_night          " Tomorrow Theme
+  colorscheme t256          " Tomorrow Theme
 else
-  colorscheme solarized
+  colorscheme chance-of-storm
 endif
 
 au BufRead,BufNewFile *.ru setfiletype ruby
@@ -204,19 +209,10 @@ imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd BufNewFile,BufRead *.html.erb set filetype=html
 autocmd BufNewFile,BufRead *.css.scss set filetype=css
 autocmd FileType haml set tabstop=4|set shiftwidth=4|set expandtab
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 au! BufRead,BufNewFile *.erb set filetype=eruby
-
-
-
 
 let delimitMate_expand_cr = 1
 
@@ -224,18 +220,15 @@ let delimitMate_expand_cr = 1
 let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
 
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 map <Leader>m :call UltiSnips_ListSnippets()<cr>
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n><c-p>"
-let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
@@ -250,7 +243,7 @@ imap <F5> <Plug>(xmpfilter-run)
 
 function Ruby_eval()
   let curline=line(".")
-  normal A #	€k5ggVG:Tab /# =>
+  normal A # =?€kb>€k5
   execute 'silent '.curline
   unlet curline
 endfunction

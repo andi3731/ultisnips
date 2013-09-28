@@ -97,3 +97,6 @@
 [submodule "vim/bundle/vim-colors.git"]
 	path = vim/bundle/vim-colors.git
 	url = git@github.com:mgutz/vim-colors.git
+[submodule "vim/bundle/vim-shell.git"]
+	path = vim/bundle/vim-shell.git
+	url = git@github.com:xolox/vim-shell.git

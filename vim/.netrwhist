@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/andrei/playground'
-let g:netrw_dirhist_2='/media/proj/build_rails/best_quotes/config'
-let g:netrw_dirhist_3='/home/andrei/vimfiles/vim/UltiSnips'
-let g:netrw_dirhist_4='/media/proj/ut_rails/week_6/ruby_javascript_data_viz/app/views/products'
-let g:netrw_dirhist_5='/media/proj/web_learning/web_basics/js_basics'
-let g:netrw_dirhist_6='/home/andrei/dotfiles/zsh'
-let g:netrw_dirhist_7='/media/proj'
-let g:netrw_dirhist_8='/media/proj/blogger'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/media/proj/learn_ruby/00_hello'
