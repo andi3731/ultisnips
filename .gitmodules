@@ -103,3 +103,6 @@
 [submodule "vim/bundle/shymenu_vim.git"]
 	path = vim/bundle/shymenu_vim.git
 	url = git@github.com:tomtom/shymenu_vim.git
+[submodule "vim/bundle/supertab.git"]
+	path = vim/bundle/supertab.git
+	url = git@github.com:tomtom/shymenu_vim.git
