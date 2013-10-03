@@ -1,11 +1,17 @@
-set nocompatible                  " Must come first because it changes other options.
+autocmd!
 
 silent! call pathogen#runtime_append_all_bundles()
+
+set nocompatible                  " Must come first because it changes other options.
+
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
+" Set the tag file search order
+set tags=./tags;
 
 set linespace=10
 set guioptions-=T
+set guioptions-=m
 set guioptions-=L
 set guioptions-=r
 set guioptions+=lrb
@@ -62,8 +68,6 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 set noswapfile
-set visualbell
-
 
 
 set tabstop=2                    " Global tab width.
@@ -78,7 +82,7 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 
 
 " Or use vividchalk
-set background=dark
+set background=light
 if !has("gui_running")
   colorscheme t256          " Tomorrow Theme
 else
@@ -220,8 +224,6 @@ let delimitMate_expand_cr = 1
 let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -229,6 +231,8 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 map <Leader>m :call UltiSnips_ListSnippets()<cr>
 
+" SuperTab
+let g:SuperTabDefaultCompletionType = "<c-p>"
 
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
@@ -238,14 +242,25 @@ map <leader>w <c-w>w
 nnoremap <Space> za
 
 " xmpfilter
-nmap <F5> <Plug>(xmpfilter-run)
+map <F5> <Plug>(xmpfilter-run)
 imap <F5> <Plug>(xmpfilter-run)
 
-function Ruby_eval()
+function! Ruby_eval_insert_hash()
   let curline=line(".")
-  normal A # =?€kb>€k5
+  exec "normal A # => \<esc>\<F5>\0"
+  exec "normal ggVG:Tabularize /# =>\<cr>"
   execute 'silent '.curline
   unlet curline
 endfunction
 
-autocmd FileType ruby map <F4> :call Ruby_eval()<cr>
+function! Ruby_eval_no_align()
+  exec "normal A # => \<esc>\<F5>\0"
+endfunction
+
+autocmd FileType ruby map <F6> :call Ruby_eval_insert_hash()<cr>
+autocmd FileType ruby inoremap <F6> :call Ruby_eval_insert_hash()<cr>
+autocmd FileType ruby map <F4> :call Ruby_eval_no_align()<cr>
+autocmd FileType ruby inoremap <F4> :call Ruby_eval_no_align()<cr>
+
+" Scoala, PASCAL
+autocmd FileType pascal inoremap <C-l> := 

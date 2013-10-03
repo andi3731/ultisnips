@@ -28,13 +28,23 @@ else
   ${3}
 endsnippet
 
+snippet case "case statemend" w
+case ${1} of
+  $0
+end;
+endsnippet
+
+snippet : "case statemend possible valuew" w
+${1:val} : ${2:expr};$0
+endsnippet
+
 snippet for "for loop" w
-for ${1:var_assign} to ${2:var} do
+for ${1:var_assign} ${2:pas} ${3:var} do
   $0
 endsnippet
 
 snippet while "while loop" w
-while ${1:cond}} do
+while ${1:cond} do
   $0
 endsnippet
 
