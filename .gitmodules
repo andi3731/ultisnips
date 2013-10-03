@@ -106,3 +106,6 @@
 [submodule "vim/bundle/supertab.git"]
 	path = vim/bundle/supertab.git
 	url = git@github.com:tomtom/shymenu_vim.git
+[submodule "vim/bundle/grb256.git"]
+	path = vim/bundle/grb256.git
+	url = git@github.com:quanganhdo/grb256.git

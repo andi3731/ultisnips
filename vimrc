@@ -131,8 +131,6 @@ augroup vimrcEx
   au BufRead,BufNewFile *.thor set filetype=ruby
 
 
-  " Scoala, PASCAL
-  autocmd FileType pascal inoremap <C-l> := 
 
 augroup END
 
@@ -169,8 +167,11 @@ map <leader>w <c-w>w
 nnoremap <Space> za
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
+" Scoala, PASCAL
+autocmd FileType pascal inoremap <C-l> <space>:=<space>
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
+
 " Clear the search buffer when hitting return
 function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
@@ -187,6 +188,7 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
+
 " toggle list chars
 nmap <leader>l :set list!<cr>
 " Run ruby
@@ -195,10 +197,10 @@ map <Leader>r :!clear && ruby %<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         ARROW KES ARE UNCCEPTABLE                          "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+map <Left> :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up> :echo "no!"<cr>
+map <Down> :echo "no!"<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                  OPEN FILES IN DIRECTORY OF CURRENT FILE                   "
@@ -266,15 +268,18 @@ silent! map <F2> :NERDTreeToggle<cr>
 "Show hidden files in NerdTree
 let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
+
 """""""""""""""""""
 "  Buff Explorer  "
 """""""""""""""""""
 let g:bufExplorerShowRelativePath=1
+
 """""""""""""""
 "  rails.vim  "
 """""""""""""""
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
+
 """"""""""""""
 "  syntasic  "
 """"""""""""""
@@ -293,16 +298,19 @@ else
   let g:syntastic_warning_symbol = '.'
   let g:syntastic_style_warning_symbol = '>'
 endif
+
 """""""""""
 "  emmet  "
 """""""""""
 imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
+
 """""""""""""""""
 "  delimitmate  "
 """""""""""""""""
 let delimitMate_expand_cr = 1
+
 """""""""""""""
 "  ultisnips  "
 """""""""""""""
@@ -310,3 +318,16 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 map <Leader>m :call UltiSnips_ListSnippets()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       PROMOTE VARIABLE TO RSPEC LET                        "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
