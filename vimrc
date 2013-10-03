@@ -1,13 +1,83 @@
 autocmd!
 
 silent! call pathogen#runtime_append_all_bundles()
-
-set nocompatible                  " Must come first because it changes other options.
-
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
+runtime macros/matchit.vim
+" ctrlp
+set runtimepath^=~/dotfiles/vim/bundle/ctrlp.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                        BASIC EDITING CONFIGURATION                         "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+
+set visualbell
+set number
+set numberwidth=1
+set hidden
+set history=10000
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set shiftround
+set autoindent
+set laststatus=2
+set showmatch
+set showmode
+set incsearch
+set hlsearch
+" make searches case-sensitive only if they contain upper-case characters
+set ignorecase smartcase
+set cursorline
+set cmdheight=1
+set switchbuf=useopen
+set showtabline=2
+set winwidth=79
+"set t_ti= t_te=
+set scrolloff=3
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
+set backupdir=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
+set undofile
+set undodir=/tmp/vimundo
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+" display incomplete commands
+set showcmd
+" Enable syntax hightlighting
+syntax on
+" Enable file type detection.
+filetype off
+filetype on
+filetype plugin indent on
+set wildmode=longest,list
+" make tab completion for files/buffers act like bash
+set wildmenu
+" set list chars
+set list
+set listchars=tab:\.\ ,trail:-,eol:\¬
+set linebreak
+set showbreak=>\ 
+set encoding=utf-8
+set fileencoding=utf-8
+" o-prefixed numbers are still decimal 
+set nrformats-=octal
+
+
+" leader key
+let mapleader=","
+
+" Fix slow O inserts
+:set timeout timeoutlen=1000 ttimeoutlen=100
 " Set the tag file search order
 set tags=./tags;
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                GUI OPTIONS                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set linespace=10
 set guioptions-=T
@@ -19,77 +89,93 @@ set guioptions-=lrb
 autocmd GUIEnter * set vb t_vb= " for your GUI
 autocmd VimEnter * set vb t_vb=
 
-set undofile
-set undodir=/tmp/vimundo
-syntax enable                     " Turn on syntax highlighting.
-filetype off
-filetype on
-filetype plugin indent on         " Turn on file type detection.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              CUSTOM AUTOCMDS                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
 
-runtime macros/matchit.vim        " Load the matchit plugin.  
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
-set encoding=utf-8
-set fileencoding=utf-8
-set backspace=indent,eol,start    " Intuitive backspacing.
+  " automatically reload vimrc when it's saved
+  au BufWritePost .vimrc so ~/.vimrc
 
-let mapleader=','                 " Set leader key
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
-set hidden                        " Handle multiple buffers better.
-set number
-set numberwidth=1
+  autocmd FileType ruby,haml,eruby,yaml,html,sass,cucumber,css set ai sw=2 sts=2 et
+  autocmd FileType python,javascript set ai sw=4 sts=4 et
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
-set incsearch
-set hlsearch
-set showmatch
+  autocmd BufRead *.mkd set ai formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;
 
-"set winwidth=84
-"set winheight=5
-"set winminheight=5
-"set winheight=999
+  " Indent p tags
+  autocmd FileType html,eruby
+    \ if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags = '\|p\|li\|dt\|dd' endif
 
-" set mouse=a                       " Automatically enable mouse usage
-" set mousehide                     " Hide the mouse cursor while typing
-nnoremap <Leader>cl :set cursorline! <CR>
-set cursorline
-nnoremap <silent><Leader><space> :nohls<CR>
-" automatically reload vimrc when it's saved
-au BufWritePost .vimrc so ~/.vimrc
+  autocmd! FileType mkd setlocal syn=off
 
+  autocmd! CmdwinEnter * :unmap <cr>
+  autocmd! CmdwinLeave * :call MapCR
 
-set visualbell                    " No beeping.
-
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-set noswapfile
+  au BufRead,BufNewFile *.ru setfiletype ruby
+  " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
+  autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+  " .ru and .thor are Ruby.
+  au BufRead,BufNewFile *.ru set filetype=ruby
+  au BufRead,BufNewFile *.thor set filetype=ruby
 
 
-set tabstop=2                    " Global tab width.
-"set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+  " Scoala, PASCAL
+  autocmd FileType pascal inoremap <C-l> := 
 
-set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+augroup END
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   COLOR                                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
 
-
-
-" Or use vividchalk
-set background=light
+set background=dark
 if !has("gui_running")
   colorscheme t256          " Tomorrow Theme
 else
   colorscheme chance-of-storm
 endif
+set guifont=PragmataPro\ for\ Powerline\ 10
 
-au BufRead,BufNewFile *.ru setfiletype ruby
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                STATUS LINE                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               MISC KEY MAPS                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Move around split with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" toggle window
+map <leader>w <c-w>w
+" toggle Fold
+nnoremap <Space> za
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" delimitMate
+imap <C-K> <Plug>delimitMateS-Tab
+" Clear the search buffer when hitting return
+function! MapCR()
+  nnoremap <cr> :nohlsearch<cr>
+endfunction
+call MapCR()
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -101,147 +187,43 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
-nnoremap <F3> :NERDTreeMirror<CR>
-
-
-" ctrlp
-set runtimepath^=~/dotfiles/vim/bundle/ctrlp.vim
-
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
-
-" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-
-" Buff Explorer
-let g:bufExplorerShowRelativePath=1
-
 " toggle list chars
 nmap <leader>l :set list!<cr>
+" Run ruby
+map <Leader>r :!clear && ruby %<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         ARROW KES ARE UNCCEPTABLE                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
 
-set listchars=tab:\.\ ,trail:-,eol:\¬
-set softtabstop=2
-set shiftwidth=2
-set smartindent
-set tabstop=2
-set list
-set expandtab
-set shiftround
-
-set timeout
-set timeoutlen=1000
-set ttimeoutlen=100
-
-set wrap
-set linebreak
-set showbreak=>\ 
-" set scrolloff=5
-set nrformats-=octal           " o-prefixed numbers are still decimal
-
-" Always show statusline
-set laststatus=2
-
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
-
-set wildmenu
-set wildmode=full
-
-
-function! OpenUrlUnderCursor()
-  let url=matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-  if url != ""
-    silent exec "!open '".url."'" | redraw!
-  endif
-endfunction
-map <leader>o :call OpenUrlUnderCursor()<cr>
-
-
-" alt+n or alt+p to navigate between entries in QuickFix
-map <silent> <m-p> :cp <cr>
-map <silent> <m-n> :cn <cr>
-" Change which file opens after executing :Rails command
-let g:rails_default_file='config/database.yml'
-
-
-" Syntastic
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_signs = 1    " Put errors on left side
-let g:syntastic_quiet_warnings = 1  " Only errors, not warnings please
-let g:syntastic_disabled_filetypes = ['html']
-if has('unix')
-  let g:syntastic_error_symbol = '★'
-  let g:syntastic_style_error_symbol = '>'
-  let g:syntastic_warning_symbol = '⚠'
-  let g:syntastic_style_warning_symbol = '>'
-else
-  let g:syntastic_error_symbol = '!'
-  let g:syntastic_style_error_symbol = '>'
-  let g:syntastic_warning_symbol = '.'
-  let g:syntastic_style_warning_symbol = '>'
-endif
-
-silent! map <F2> :NERDTreeToggle<cr>
-
-set guifont=PragmataPro\ for\ Powerline\ 10
-
-" .ru and .thor are Ruby.
-au BufRead,BufNewFile *.ru set filetype=ruby
-au BufRead,BufNewFile *.thor set filetype=ruby
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                  OPEN FILES IN DIRECTORY OF CURRENT FILE                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR><CR>
 map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR><CR>
 map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR><CR>
 
-" Run ruby
-map <Leader>r :!clear && ruby %<cr>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            RENAME CURRENT FILE                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+map <leader>n :call RenameFile()<cr>
 
-"Tabularize maps
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<cr>
-  vmap <Leader>a= :Tabularize /=<cr>
-  nmap <Leader>a: :Tabularize /:<cr>
-  vmap <Leader>a: :Tabularize /:<cr>
-endif
-
-" Zen Coding
-imap <C-e> <C-y>,
-let g:user_emmet_mode='a'    "enable all function in all mode.
-
-" Enable omni completion.
-autocmd BufNewFile,BufRead *.html.erb set filetype=html
-autocmd BufNewFile,BufRead *.css.scss set filetype=css
-autocmd FileType haml set tabstop=4|set shiftwidth=4|set expandtab
-au! BufRead,BufNewFile *.erb set filetype=eruby
-
-let delimitMate_expand_cr = 1
-
-"Show hidden files in NerdTree
-let NERDTreeShowHidden=1
-let g:NERDTreeHijackNetrw=0
-
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-map <Leader>m :call UltiSnips_ListSnippets()<cr>
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = "<c-p>"
-
-" delimitMate
-imap <C-K> <Plug>delimitMateS-Tab
-map <leader>w <c-w>w
-
-" toggle Fold
-nnoremap <Space> za
-
-" xmpfilter
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             XMPFILTER SETTINGS                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F5> <Plug>(xmpfilter-run)
 imap <F5> <Plug>(xmpfilter-run)
 
@@ -262,5 +244,83 @@ autocmd FileType ruby inoremap <F6> :call Ruby_eval_insert_hash()<cr>
 autocmd FileType ruby map <F4> :call Ruby_eval_no_align()<cr>
 autocmd FileType ruby inoremap <F4> :call Ruby_eval_no_align()<cr>
 
-" Scoala, PASCAL
-autocmd FileType pascal inoremap <C-l> := 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            OPEN URL UNDERCURSOR                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! OpenUrlUnderCursor()
+  let url=matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  if url != ""
+    silent exec "!open '".url."'" | redraw!
+  endif
+endfunction
+map <leader>o :call OpenUrlUnderCursor()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              PLUGINS SETTINGS                              "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""
+"  nerdtree  "
+""""""""""""""
+nnoremap <F3> :NERDTreeMirror<CR>
+silent! map <F2> :NERDTreeToggle<cr>
+"Show hidden files in NerdTree
+let NERDTreeShowHidden=1
+let g:NERDTreeHijackNetrw=0
+"""""""""""""""""""
+"  Buff Explorer  "
+"""""""""""""""""""
+let g:bufExplorerShowRelativePath=1
+"""""""""""""""
+"  rails.vim  "
+"""""""""""""""
+" Change which file opens after executing :Rails command
+let g:rails_default_file='config/database.yml'
+""""""""""""""
+"  syntasic  "
+""""""""""""""
+let g:syntastic_check_on_open = 1
+let g:syntastic_enable_signs = 1    " Put errors on left side
+let g:syntastic_quiet_warnings = 1  " Only errors, not warnings please
+let g:syntastic_disabled_filetypes = ['html']
+if has('unix')
+  let g:syntastic_error_symbol = '★'
+  let g:syntastic_style_error_symbol = '>'
+  let g:syntastic_warning_symbol = '⚠'
+  let g:syntastic_style_warning_symbol = '>'
+else
+  let g:syntastic_error_symbol = '!'
+  let g:syntastic_style_error_symbol = '>'
+  let g:syntastic_warning_symbol = '.'
+  let g:syntastic_style_warning_symbol = '>'
+endif
+"""""""""""
+"  emmet  "
+"""""""""""
+imap <C-e> <C-y>,
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:emmet_html5=1
+"""""""""""""""""
+"  delimitmate  "
+"""""""""""""""""
+let delimitMate_expand_cr = 1
+"""""""""""""""
+"  ultisnips  "
+"""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+map <Leader>m :call UltiSnips_ListSnippets()<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           MULTIPURPOSE TAB KEY.                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n> 

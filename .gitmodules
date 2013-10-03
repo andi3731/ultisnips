@@ -70,9 +70,6 @@
 [submodule "vim/bundle/neocomplcache.vim.git"]
 	path = vim/bundle/neocomplcache.vim.git
 	url = git@github.com:Shougo/neocomplcache.vim.git
-[submodule "vim/bundle/supertab.git"]
-	path = vim/bundle/supertab.git
-	url = git@github.com:ervandew/supertab.git
 [submodule "vim/bundle/vim-ruby.git"]
 	path = vim/bundle/vim-ruby.git
 	url = git://github.com/vim-ruby/vim-ruby.git
