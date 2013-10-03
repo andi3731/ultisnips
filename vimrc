@@ -53,7 +53,7 @@ syntax on
 filetype off
 filetype on
 filetype plugin indent on
-set wildmode=longest,list
+set wildmode=full
 " make tab completion for files/buffers act like bash
 set wildmenu
 " set list chars
