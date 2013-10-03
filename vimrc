@@ -140,9 +140,9 @@ augroup END
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
-set background=dark
+set background=light
 if !has("gui_running")
-  colorscheme t256          " Tomorrow Theme
+  colorscheme t256
 else
   colorscheme chance-of-storm
 endif
