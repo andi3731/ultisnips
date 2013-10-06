@@ -33,7 +33,7 @@ set ignorecase smartcase
 set cursorline
 set cmdheight=1
 set switchbuf=useopen
-set showtabline=2
+set showtabline=1
 set winwidth=79
 "set t_ti= t_te=
 set scrolloff=3
@@ -156,6 +156,8 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*Cap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               MISC KEY MAPS                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle between two files
+map ,f <C-^>
 " Move around split with <c-hjkl>
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -242,9 +244,9 @@ function! Ruby_eval_no_align()
 endfunction
 
 autocmd FileType ruby map <F6> :call Ruby_eval_insert_hash()<cr>
-autocmd FileType ruby inoremap <F6> :call Ruby_eval_insert_hash()<cr>
+autocmd FileType ruby inoremap <F6> <C-R>=Ruby_eval_insert_hash()<cr>
 autocmd FileType ruby map <F4> :call Ruby_eval_no_align()<cr>
-autocmd FileType ruby inoremap <F4> :call Ruby_eval_no_align()<cr>
+autocmd FileType ruby inoremap <F4> <C-R>=Ruby_eval_no_align()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            OPEN URL UNDERCURSOR                            "
