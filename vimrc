@@ -138,7 +138,7 @@ set background=light
 if !has("gui_running")
   colorscheme t256
 else
-  colorscheme chance-of-storm
+  colorscheme badwolf
 endif
 set guifont=PragmataPro\ for\ Powerline\ 10
 
