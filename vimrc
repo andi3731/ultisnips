@@ -1,6 +1,9 @@
 autocmd!
 
 silent! call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
+Helptags
+
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
@@ -97,9 +100,6 @@ augroup vimrcEx
   autocmd!
   autocmd FileType text setlocal textwidth=78
 
-  " automatically reload vimrc when it's saved
-  au BufWritePost .vimrc so ~/.vimrc
-
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -114,10 +114,6 @@ augroup vimrcEx
   autocmd BufRead *.mkd set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown set ai formatoptions=tcroqn2 comments=n:&gt;
 
-  " Indent p tags
-  autocmd FileType html,eruby
-    \ if g:html_indent_tags !~ '\\|p\>' | let g:html_indent_tags = '\|p\|li\|dt\|dd' endif
-
   autocmd! FileType mkd setlocal syn=off
 
   autocmd! CmdwinEnter * :unmap <cr>
@@ -129,8 +125,6 @@ augroup vimrcEx
   " .ru and .thor are Ruby.
   au BufRead,BufNewFile *.ru set filetype=ruby
   au BufRead,BufNewFile *.thor set filetype=ruby
-
-
 
 augroup END
 
@@ -228,6 +222,7 @@ map <leader>n :call RenameFile()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             XMPFILTER SETTINGS                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:xmpfilter_cmd = "xmpfilter -a --no-warnings"
 map <F5> <Plug>(xmpfilter-run)
 imap <F5> <Plug>(xmpfilter-run)
 
@@ -247,6 +242,8 @@ autocmd FileType ruby map <F6> :call Ruby_eval_insert_hash()<cr>
 autocmd FileType ruby inoremap <F6> <C-R>=Ruby_eval_insert_hash()<cr>
 autocmd FileType ruby map <F4> :call Ruby_eval_no_align()<cr>
 autocmd FileType ruby inoremap <F4> <C-R>=Ruby_eval_no_align()<cr>
+autocmd FileType ruby map <leader><leader>m <Plug>(xmpfilter-mark)
+autocmd FileType ruby map  <leader><leader>M 0f#Dx0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            OPEN URL UNDERCURSOR                            "
@@ -320,7 +317,9 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 map <Leader>m :call UltiSnips_ListSnippets()<cr>
-
+"""""""""""
+"  ctrlp  "
+"""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       PROMOTE VARIABLE TO RSPEC LET                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
