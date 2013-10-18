@@ -15,6 +15,7 @@ set runtimepath^=~/dotfiles/vim/bundle/ctrlp.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 
+set autoread
 set visualbell
 set number
 set numberwidth=1
@@ -39,7 +40,6 @@ set switchbuf=useopen
 set showtabline=1
 set winwidth=79
 "set t_ti= t_te=
-set scrolloff=3
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
@@ -82,9 +82,10 @@ set tags=./tags;
 "                                GUI OPTIONS                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set linespace=10
+set linespace=5
 set guioptions-=T
 set guioptions-=m
+set guioptions-=e
 set guioptions-=L
 set guioptions-=r
 set guioptions+=lrb
@@ -106,7 +107,7 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 
-  autocmd FileType ruby,haml,eruby,yaml,html,sass,cucumber,css set ai sw=2 sts=2 et
+  autocmd FileType ruby,pascal,haml,eruby,yaml,html,sass,cucumber,css set ai sw=2 sts=2 et
   autocmd FileType python,javascript set ai sw=4 sts=4 et
 
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
@@ -248,13 +249,7 @@ autocmd FileType ruby map  <leader><leader>M 0f#Dx0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            OPEN URL UNDERCURSOR                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! OpenUrlUnderCursor()
-  let url=matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
-  if url != ""
-    silent exec "!open '".url."'" | redraw!
-  endif
-endfunction
-map <leader>o :call OpenUrlUnderCursor()<cr>
+map <leader>o gx
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              PLUGINS SETTINGS                              "
@@ -305,6 +300,10 @@ imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
 
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
+map <leader>y <C-y>n
+map <leader>Y <C-y>N
+
 """""""""""""""""
 "  delimitmate  "
 """""""""""""""""
@@ -332,3 +331,31 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               get image size                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! s:getImageSize(path)
+  let type = ''
+  let width = -1
+  let height = -1
+  let hex = substitute(system('curl -s "'.a:path.'" | xxd -p'), '\n', '', 'g')
+  if hex =~ '^89504e470d0a1a0a'
+    let type = 'png'
+    let width = eval('0x'.hex[32:39])
+    let height = eval('0x'.hex[40:47])
+  endif
+  if hex =~ '^ffd8'
+    let pos = match(hex, 'ffc[02]')
+    let type = 'jpg'
+    let height = eval('0x'.hex[pos+10:pos+11])*256 + eval('0x'.hex[pos+12:pos+13])
+    let width = eval('0x'.hex[pos+14:pos+15])*256 + eval('0x'.hex[pos+16:pos+17])
+  endif
+  if hex =~ '^47494638'
+    let type = 'gif'
+    let width = eval('0x'.hex[18:19].hex[16:17])
+    let height = eval('0x'.hex[14:15].hex[12:13])
+  endif
+  return {'type':type, 'width':width, 'height':height}
+endfunction
+

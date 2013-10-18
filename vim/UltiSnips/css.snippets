@@ -6,6 +6,25 @@ snippet bdi:m+ "bdi:m+"
 -moz-border-image: url(${1}) ${2:0} ${3:0} ${4:0} ${5:0} ${6:stretch} ${7:stretch};
 endsnippet
 
+snippet placeholder "Cross browser placeholder style" w
+::-webkit-input-placeholder {
+    $1
+}
+
+:-moz-placeholder {
+    $1
+}
+
+::-moz-placeholder {
+    $1
+}
+
+:-ms-input-placeholder {
+    $1
+}
+$0
+endsnippet
+
 snippet bdi:m "bdi:m"
 -moz-border-image: ${1};
 endsnippet
