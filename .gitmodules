@@ -109,3 +109,6 @@
 [submodule "vim/bundle/badwolf.git"]
 	path = vim/bundle/badwolf.git
 	url = git@github.com:sjl/badwolf.git
+[submodule "vim/bundle/supertab.git"]
+	path = vim/bundle/supertab.git
+	url = git@github.com:ervandew/supertab.git
