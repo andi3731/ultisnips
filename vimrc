@@ -175,6 +175,8 @@ function! MapCR()
 endfunction
 call MapCR()
 
+autocmd! FileType c map <leader>r :! clear && make %:r && clear && ./%:r<cr>
+
 " Tab mappings.
 map <leader>tt :tabnew<cr>
 map <leader>te :tabedit
@@ -268,6 +270,12 @@ let g:NERDTreeHijackNetrw=0
 """""""""""""""""""
 let g:bufExplorerShowRelativePath=1
 
+""""""""""""""
+"  supertab  "
+""""""""""""""
+
+
+
 """""""""""""""
 "  rails.vim  "
 """""""""""""""
@@ -296,7 +304,7 @@ endif
 """""""""""
 "  emmet  "
 """""""""""
-imap <C-e> <C-y>,
+imap <C-@> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
 
