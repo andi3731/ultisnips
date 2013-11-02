@@ -68,7 +68,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 " o-prefixed numbers are still decimal 
 set nrformats-=octal
-
+set iskeyword="@,48-57,_"
 
 " leader key
 let mapleader=","
