@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/andrei/.rvm/gems/ruby-1.9.1-p431@metaprogramming/gems/rake-10.1.0/lib'
-let g:netrw_dirhist_2='/home/andrei/.rvm/gems/ruby-1.9.1-p431@metaprogramming/gems/rake-10.1.0/lib/rake'
-let g:netrw_dirhist_3='/home/andrei/Dropbox/Projects/slider_restaurant'
-let g:netrw_dirhist_4='/home/andrei/Dropbox/Projects/odnostrani4nic/code'

@@ -175,7 +175,9 @@ function! MapCR()
 endfunction
 call MapCR()
 
-autocmd! FileType c map <leader>r :! clear && make %:r && clear && ./%:r<cr>
+autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
+autocmd FileType c map <leader>v :! clear && valgrind ./%:r<cr>
+autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -191,7 +193,7 @@ map <leader>tm :tabmove
 " toggle list chars
 nmap <leader>l :set list!<cr>
 " Run ruby
-map <Leader>r :!clear && ruby %<cr>
+autocmd! FileType ruby map <Leader>r :!clear && ruby %<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         ARROW KES ARE UNCCEPTABLE                          "
