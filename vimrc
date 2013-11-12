@@ -68,13 +68,12 @@ set encoding=utf-8
 set fileencoding=utf-8
 " o-prefixed numbers are still decimal 
 set nrformats-=octal
-set iskeyword="@,48-57,_"
 
 " leader key
 let mapleader=","
 
 " Fix slow O inserts
-:set timeout timeoutlen=1000 ttimeoutlen=100
+":set timeout timeoutlen=1000 ttimeoutlen=100
 " Set the tag file search order
 set tags=./tags;
 
@@ -100,6 +99,7 @@ augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
+  autocmd FileType php set keywordprg=pman
 
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
@@ -177,7 +177,9 @@ call MapCR()
 
 autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
 autocmd FileType c map <leader>v :! clear && valgrind ./%:r<cr>
+autocmd FileType c map <leader>g :! clear && cgdb ./%:r<cr>
 autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
+autocmd! FileType php  map <leader>r :! clear && php %<cr>
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -307,6 +309,7 @@ endif
 "  emmet  "
 """""""""""
 imap <C-@> <C-y>,
+imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
 
@@ -369,3 +372,8 @@ function! s:getImageSize(path)
   return {'type':type, 'width':width, 'height':height}
 endfunction
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           usingvim as hex editor                           "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>h :%!xxd<cr>
+map <leader>H :%!xxd -r<cr>

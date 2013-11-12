@@ -43,6 +43,14 @@ int main(int argc, char *argv[])
 }
 endsnippet
 
+snippet m "main() (main)"
+int main(void)
+{
+	$0
+	return 0;
+}
+
+endsnippet
 snippet for "for loop (for)"
 for (${2:i} = 0; $2 < ${1:count}; ${3:++$2})
 {

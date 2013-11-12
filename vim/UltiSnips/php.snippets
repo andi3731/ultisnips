@@ -1,9 +1,27 @@
 ## Snippets from SnipMate, taken from
 ## https://github.com/scrooloose/snipmate-snippets.git
 
+snippet p "php" w
+<?php
+$0
+endsnippet
+
 snippet php "php" w
 <?php
 $0
+?>
+endsnippet
+
+snippet e "echo" w
+echo($1)$0
+endsnippet
+
+snippet vd "var_dump" w
+var_dump($1)$0
+endsnippet
+
+snippet printf "printf .. (printf)"
+printf("${1:%s}\n"${1/([^%]|%%)*(%.)?.*/(?2:, :\);)/}$2${1/([^%]|%%)*(%.)?.*/(?2:\);)/}
 endsnippet
 
 snippet pe "echo" w
@@ -66,9 +84,27 @@ for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
 }
 endsnippet
 
+snippet each "each html" w
+<? foreach(${1} as ${2}): ?>
+	$0
+<? endforeach; ?>
+endsnippet
+
+snippet eachk "each html" w
+<? foreach(${1} as ${2} => ${3}): ?>
+	$0
+<? endforeach; ?>
+endsnippet
+
 snippet foreachk "foreachk"
 foreach ($${1:variable} as $${2:key} => $${3:value}){
 	${4:// code...}
+}
+endsnippet
+
+snippet foreach "foreach"
+foreach ($${1:variable} as $${2:key}){
+	${3:// code...}
 }
 endsnippet
 
@@ -80,6 +116,12 @@ snippet if "if"
 if (${1:/* condition */}) {
 	${2:// code...}
 }
+endsnippet
+
+snippet ifh "if html" w
+<? if($1): ?>
+	$0
+<? endif; ?>
 endsnippet
 
 snippet inc "inc"
