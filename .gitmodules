@@ -115,3 +115,6 @@
 [submodule "vim/bundle/vim-over.git"]
 	path = vim/bundle/vim-over.git
 	url = git@github.com:osyo-manga/vim-over.git
+[submodule "vim/bundle/C-fold.git"]
+	path = vim/bundle/C-fold.git
+	url = git@github.com:vim-scripts/C-fold.git
