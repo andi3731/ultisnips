@@ -61,9 +61,6 @@
 [submodule "vim/bundle/ultisnips.git"]
 	path = vim/bundle/ultisnips.git
 	url = git@github.com:andi3731/ultisnips.git
-[submodule "vim/bundle/bufexplorer.git"]
-	path = vim/bundle/bufexplorer.git
-	url = git@github.com:corntrace/bufexplorer.git
 [submodule "vim/bundle/neocomplete-ultisnips.git"]
 	path = vim/bundle/neocomplete-ultisnips.git
 	url = git@github.com:asmod3us/neocomplete-ultisnips.git
@@ -115,6 +112,3 @@
 [submodule "vim/bundle/vim-over.git"]
 	path = vim/bundle/vim-over.git
 	url = git@github.com:osyo-manga/vim-over.git
-[submodule "vim/bundle/C-fold.git"]
-	path = vim/bundle/C-fold.git
-	url = git@github.com:vim-scripts/C-fold.git
