@@ -3,7 +3,9 @@ autocmd!
 silent! call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
 
-"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+if has('gui_running')
+    set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+endif
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
 " ctrlp
@@ -26,7 +28,6 @@ set shiftwidth=4
 set softtabstop=4
 set shiftround
 set autoindent
-set laststatus=2
 set showmatch
 set showmode
 set incsearch
@@ -159,7 +160,6 @@ set guifont=PragmataPro\ for\ Powerline\ 10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                STATUS LINE                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               MISC KEY MAPS                                "
@@ -211,6 +211,10 @@ map <Left> :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up> :echo "no!"<cr>
 map <Down> :echo "no!"<cr>
+imap <Left> <esc>:echo "no!"<cr>i
+imap <Right> <esc>:echo "no!"<cr>i
+imap <Up> <esc>:echo "no!"<cr>i
+imap <Down> <esc>:echo "no!"<cr>i
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                  OPEN FILES IN DIRECTORY OF CURRENT FILE                   "
@@ -267,19 +271,6 @@ map <leader>o gx
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              PLUGINS SETTINGS                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""
-"  nerdtree  "
-""""""""""""""
-nnoremap <F3> :NERDTreeMirror<CR>
-silent! map <F2> :NERDTreeToggle<cr>
-"Show hidden files in NerdTree
-let NERDTreeShowHidden=1
-let g:NERDTreeHijackNetrw=0
-
-"""""""""""""""""""
-"  Buff Explorer  "
-"""""""""""""""""""
-let g:bufExplorerShowRelativePath=1
 
 """"""""""""""
 "  supertab  "
@@ -292,6 +283,7 @@ let g:bufExplorerShowRelativePath=1
 """""""""""""""
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
+let g:ruby_path = "/usr/bin/ruby"
 
 """"""""""""""
 "  syntasic  "

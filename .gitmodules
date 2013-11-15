@@ -94,3 +94,6 @@
 [submodule "vim/bundle/supertab.git"]
 	path = vim/bundle/supertab.git
 	url = git@github.com:ervandew/supertab.git
+[submodule "vim/bundle/vim-neatstatus.git"]
+	path = vim/bundle/vim-neatstatus.git
+	url = git@github.com:maciakl/vim-neatstatus.git
