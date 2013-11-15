@@ -2,7 +2,6 @@ autocmd!
 
 silent! call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
-Helptags
 
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
@@ -124,15 +123,25 @@ augroup vimrcEx
   autocmd! CmdwinEnter * :unmap <cr>
   autocmd! CmdwinLeave * :call MapCR
 
+
+
+  autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
+  autocmd  FileType c map <leader>v :! clear && valgrind ./%:r<cr>
+  autocmd  FileType c map <leader>g :! clear && cgdb ./%:r<cr>
+  autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
+  autocmd! FileType php  map <leader>r :! clear && php %<cr>
+
+augroup END
+
+augroup ruby
+  autocmd!
   au BufRead,BufNewFile *.ru setfiletype ruby
   " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
   autocmd BufNewFile,BufRead *_spec.rb compiler rspec
   " .ru and .thor are Ruby.
   au BufRead,BufNewFile *.ru set filetype=ruby
   au BufRead,BufNewFile *.thor set filetype=ruby
-
 augroup END
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   COLOR                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,12 +187,6 @@ function! MapCR()
   nnoremap <cr> :nohlsearch<cr>
 endfunction
 call MapCR()
-
-autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
-autocmd FileType c map <leader>v :! clear && valgrind ./%:r<cr>
-autocmd FileType c map <leader>g :! clear && cgdb ./%:r<cr>
-autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
-autocmd! FileType php  map <leader>r :! clear && php %<cr>
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
