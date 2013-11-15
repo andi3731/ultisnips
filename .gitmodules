@@ -10,9 +10,6 @@
 [submodule "vim/bundle/vim-endwise.git"]
 	path = vim/bundle/vim-endwise.git
 	url = git@github.com:tpope/vim-endwise.git
-[submodule "vim/bundle/git-vim.git"]
-	path = vim/bundle/git-vim.git
-	url = git@github.com:motemen/git-vim.git
 [submodule "vim/bundle/MatchTagAlways.git"]
 	path = vim/bundle/MatchTagAlways.git
 	url = git@github.com:Valloric/MatchTagAlways.git
@@ -40,9 +37,6 @@
 [submodule "vim/bundle/vim-coffee-script.git"]
 	path = vim/bundle/vim-coffee-script.git
 	url = git@github.com:kchmck/vim-coffee-script.git
-[submodule "vim/bundle/vim-easymotion.git"]
-	path = vim/bundle/vim-easymotion.git
-	url = git@github.com:Lokaltog/vim-easymotion.git
 [submodule "vim/bundle/vim-fugitive.git"]
 	path = vim/bundle/vim-fugitive.git
 	url = git@github.com:tpope/vim-fugitive.git
@@ -67,12 +61,6 @@
 [submodule "vim/bundle/neocomplcache.vim.git"]
 	path = vim/bundle/neocomplcache.vim.git
 	url = git@github.com:Shougo/neocomplcache.vim.git
-[submodule "vim/bundle/vim-ruby.git"]
-	path = vim/bundle/vim-ruby.git
-	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "vim/bundle/vim-css3-syntax.git"]
-	path = vim/bundle/vim-css3-syntax.git
-	url = git@github.com:hail2u/vim-css3-syntax.git
 [submodule "vim/bundle/vim-multiple-cursors.git"]
 	path = vim/bundle/vim-multiple-cursors.git
 	url = git@github.com:terryma/vim-multiple-cursors.git
