@@ -100,3 +100,6 @@
 [submodule "vim/bundle/vim-powerline.git"]
 	path = vim/bundle/vim-powerline.git
 	url = git@github.com:Lokaltog/vim-powerline.git
+[submodule "vim/bundle/vim-airline.git"]
+	path = vim/bundle/vim-airline.git
+	url = git@github.com:bling/vim-airline.git
