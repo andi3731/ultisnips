@@ -3,9 +3,7 @@ autocmd!
 silent! call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
 
-if has('gui_running')
-    set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
-endif
+set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
 " ctrlp

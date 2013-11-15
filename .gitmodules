@@ -97,3 +97,6 @@
 [submodule "vim/bundle/vim-neatstatus.git"]
 	path = vim/bundle/vim-neatstatus.git
 	url = git@github.com:maciakl/vim-neatstatus.git
+[submodule "vim/bundle/vim-powerline.git"]
+	path = vim/bundle/vim-powerline.git
+	url = git@github.com:Lokaltog/vim-powerline.git
