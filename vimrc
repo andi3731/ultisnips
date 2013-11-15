@@ -3,7 +3,7 @@ autocmd!
 silent! call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
 " ctrlp
@@ -19,7 +19,7 @@ set visualbell
 set number
 set numberwidth=1
 set hidden
-set history=10000
+set history=1000
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -62,7 +62,7 @@ set wildmenu
 set list
 set listchars=tab:\.\ ,trail:-,eol:\¬
 set linebreak
-set showbreak=>\ 
+set showbreak=>\
 set encoding=utf-8
 set fileencoding=utf-8
 " o-prefixed numbers are still decimal 
@@ -433,3 +433,11 @@ function! TabToggle()
   endif
 endfunction
 nmap <F9> mz:execute TabToggle()<CR>'z
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 live vimrc                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd! bufwritepost .vimrc source $MYVIMRC
+endif
+nmap <leader>vr :tabedit $MYVIMRC<CR>
