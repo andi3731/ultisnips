@@ -1,7 +1,35 @@
 autocmd!
+set nocompatible
+filetype off
 
-silent! call pathogen#runtime_append_all_bundles()
-call pathogen#infect()
+set runtimepath+=~/.vim/bundle/vundle
+call vundle#rc()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  plugins                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-rails'
+Bundle 'kien/ctrlp.vim'
+Bundle 'andi3731/ultisnips'
+Bundle 'mattn/emmet-vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'ervandew/supertab'
+Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/syntastic'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-markdown'
+Bundle 'airblade/vim-rooter'
+Bundle 't9md/vim-ruby-xmpfilter'
+Bundle 'xolox/vim-shell'
+Bundle 'xolox/vim-misc'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'Raimondi/delimitMate'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'scrooloose/nerdtree'
 
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
@@ -11,7 +39,6 @@ set runtimepath^=~/dotfiles/vim/bundle/ctrlp.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                        BASIC EDITING CONFIGURATION                         "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
 
 set autoread
 set visualbell
@@ -145,6 +172,7 @@ augroup ruby
   au BufRead,BufNewFile *.ru set filetype=ruby
   au BufRead,BufNewFile *.thor set filetype=ruby
 augroup END
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   COLOR                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -153,7 +181,9 @@ set t_Co=256
 
 set background=light
 if !has("gui_running")
-  colorscheme t256
+  " colorscheme t256
+  " colorscheme desert256
+  colorscheme devbox-dark-256
 else
   colorscheme badwolf
 endif
@@ -435,7 +465,13 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badwolf'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   netrw                                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au VimLeave * if filereadable("[path here]/.netrwhist")|call delete("[path here]/.netrwhist")|endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                    tidy                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap ,x :%!tidy -q -i --show-errors 0<CR>
 command! Tidy  :%!tidy -q -i --show-errors 0 -xml
+
