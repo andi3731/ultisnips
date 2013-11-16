@@ -3,7 +3,6 @@ autocmd!
 silent! call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
 " ctrlp
@@ -123,6 +122,11 @@ augroup vimrcEx
   autocmd! CmdwinLeave * :call MapCR
 
 
+  " Clear the search buffer when hitting return
+  function! MapCR()
+      nnoremap <cr> :nohlsearch<cr>
+  endfunction
+  call MapCR()
 
   autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
   autocmd  FileType c map <leader>v :! clear && valgrind ./%:r<cr>
@@ -158,7 +162,7 @@ set guifont=PragmataPro\ for\ Powerline\ 10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                STATUS LINE                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               MISC KEY MAPS                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -179,12 +183,6 @@ imap <c-l> <space>=><space>
 autocmd FileType pascal inoremap <C-l> <space>:=<space>
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
-
-" Clear the search buffer when hitting return
-function! MapCR()
-  nnoremap <cr> :nohlsearch<cr>
-endfunction
-call MapCR()
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -310,7 +308,6 @@ imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
 
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 map <leader>y <C-y>n
 map <leader>Y <C-y>N
 
@@ -429,5 +426,16 @@ nmap <F9> mz:execute TabToggle()<CR>'z
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd! bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost .vimrc :AirlineRefresh
 endif
 nmap <leader>vr :tabedit $MYVIMRC<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  airline                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_powerline_fonts = 1
+let g:airline_theme='badwolf'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                    tidy                                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap ,x :%!tidy -q -i --show-errors 0<CR>
+command! Tidy  :%!tidy -q -i --show-errors 0 -xml
