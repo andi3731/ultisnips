@@ -31,7 +31,6 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
 
-set runtimepath+=~/.vim/ultisnips_rep
 runtime macros/matchit.vim
 " ctrlp
 set runtimepath^=~/dotfiles/vim/bundle/ctrlp.vim
@@ -161,10 +160,6 @@ augroup vimrcEx
   autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
   autocmd! FileType php  map <leader>r :! clear && php %<cr>
 
-augroup END
-
-augroup ruby
-  autocmd!
   au BufRead,BufNewFile *.ru setfiletype ruby
   " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
   autocmd BufNewFile,BufRead *_spec.rb compiler rspec
@@ -297,6 +292,20 @@ map <leader>o gx
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              PLUGINS SETTINGS                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""
+"  syntastic  "
+"""""""""""""""
+let g:syntastic_mode_map = { 'mode': 'active',
+                               \ 'passive_filetypes': ['nxc', 'java', 'scss'] }
+
+""""""""""""""
+"  nerdtree  "
+""""""""""""""
+nnoremap <F3> :NERDTreeMirror<CR>
+silent! map <F2> :NERDTreeToggle<cr>
+"Show hidden files in NerdTree
+let NERDTreeShowHidden=1
+let g:NERDTreeHijackNetrw=0
 
 """"""""""""""
 "  supertab  "
@@ -337,7 +346,7 @@ imap <C-@> <C-y>,
 imap <C-e> <C-y>,
 let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:emmet_html5=1
-
+let g:use_emmet_complete_tag = 1
 map <leader>y <C-y>n
 map <leader>Y <C-y>N
 
@@ -356,6 +365,15 @@ map <Leader>m :call UltiSnips_ListSnippets()<cr>
 """""""""""
 "  ctrlp  "
 """""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              multiple cursors                              "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_prev_key='<C-m>'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       PROMOTE VARIABLE TO RSPEC LET                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -458,7 +476,7 @@ if has("autocmd")
   autocmd! bufwritepost .vimrc source $MYVIMRC
   autocmd bufwritepost .vimrc :AirlineRefresh
 endif
-nmap <leader>vr :tabedit $MYVIMRC<CR>
+nmap <leader>vr :edit $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  airline                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -474,4 +492,3 @@ au VimLeave * if filereadable("[path here]/.netrwhist")|call delete("[path here]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap ,x :%!tidy -q -i --show-errors 0<CR>
 command! Tidy  :%!tidy -q -i --show-errors 0 -xml
-
