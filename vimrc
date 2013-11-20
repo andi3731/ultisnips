@@ -11,14 +11,14 @@ call vundle#rc()
 Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
-Bundle 'andi3731/ultisnips'
+"Bundle 'andi3731/ultisnips'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-endwise'
+"Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-markdown'
 Bundle 'airblade/vim-rooter'
 Bundle 't9md/vim-ruby-xmpfilter'
@@ -30,6 +30,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'Raimondi/delimitMate'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
+
+filetype plugin indent on
 
 runtime macros/matchit.vim
 " ctrlp
@@ -50,7 +52,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set shiftround
-set autoindent
 set showmatch
 set showmode
 set incsearch
@@ -59,6 +60,8 @@ set hlsearch
 set ignorecase smartcase
 set cursorline
 set cmdheight=1
+set autoindent
+"set smartindent
 set switchbuf=useopen
 set showtabline=1
 set winwidth=79
@@ -75,10 +78,6 @@ set backspace=indent,eol,start
 set showcmd
 " Enable syntax hightlighting
 syntax on
-" Enable file type detection.
-filetype off
-filetype on
-filetype plugin indent on
 set wildmode=full
 " make tab completion for files/buffers act like bash
 set wildmenu
@@ -126,7 +125,7 @@ augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType php set keywordprg=pman
+  autocmd FileType php set keywordprg=pman ai
 
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
@@ -208,6 +207,7 @@ imap <c-l> <space>=><space>
 autocmd FileType pascal inoremap <C-l> <space>:=<space>
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
+let delimitMate_expand_cr=1
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -310,7 +310,7 @@ let g:NERDTreeHijackNetrw=0
 """"""""""""""
 "  supertab  "
 """"""""""""""
-
+let g:SuperTabCrMapping = 0
 
 
 """""""""""""""
@@ -492,3 +492,4 @@ au VimLeave * if filereadable("[path here]/.netrwhist")|call delete("[path here]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap ,x :%!tidy -q -i --show-errors 0<CR>
 command! Tidy  :%!tidy -q -i --show-errors 0 -xml
+
