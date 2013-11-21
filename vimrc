@@ -11,7 +11,7 @@ call vundle#rc()
 Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
-"Bundle 'andi3731/ultisnips'
+Bundle 'andi3731/ultisnips'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
@@ -30,6 +30,9 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'Raimondi/delimitMate'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
+Bundle 'lfilho/cosco.vim'
+Bundle 'flomotlik/vim-livereload'
+Bundle 'othree/html5.vim'
 
 filetype plugin indent on
 
@@ -125,7 +128,7 @@ augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType php set keywordprg=pman ai
+  autocmd FileType php set keywordprg=pman
 
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
@@ -365,6 +368,10 @@ map <Leader>m :call UltiSnips_ListSnippets()<cr>
 """""""""""
 "  ctrlp  "
 """""""""""
+map <leader><leader>t <C-p>
+map <leader><leader>y :CtrlPBuffer<cr>
+let g:ctrlp_show_hidden=1
+let g:ctrlp_working_path_mode=0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              multiple cursors                              "
@@ -384,8 +391,8 @@ function! PromoteToLet()
   :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
   :normal ==
 endfunction
-:command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
+au FileType ruby :command! PromoteToLet :call PromoteToLet()
+au FileType ruby :map <leader>p :PromoteToLet<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               get image size                               "
@@ -493,3 +500,8 @@ au VimLeave * if filereadable("[path here]/.netrwhist")|call delete("[path here]
 vmap ,x :%!tidy -q -i --show-errors 0<CR>
 command! Tidy  :%!tidy -q -i --show-errors 0 -xml
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   cosco                                    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>; :call cosco#commaOrSemiColon()<CR>
+inoremap <silent> <leader>; <ESC>:call cosco#commaOrSemiColon()"<CR>a

@@ -73,7 +73,8 @@ interface ${1:someClass}
 endsnippet
 
 snippet else "else"
-else {
+else
+{
 	${1:// code...}
 }
 endsnippet
@@ -113,7 +114,8 @@ $_GET['${1}']${2}
 endsnippet
 
 snippet if "if"
-if (${1:/* condition */}) {
+if (${1:/* condition */})
+{
 	${2:// code...}
 }
 endsnippet
@@ -122,6 +124,10 @@ snippet ifh "if html" w
 <? if($1): ?>
 	$0
 <? endif; ?>
+endsnippet
+
+snippet elseh "else html" w
+<? else: ?>
 endsnippet
 
 snippet inc "inc"
@@ -248,7 +254,7 @@ endsnippet
 snippet fu "Function snip" !b
 function ${1:name}(${2:$param})
 {
-    ${VISUAL}${3:return null;}
+	${VISUAL}${3:return null;}
 }
 $0
 endsnippet
@@ -277,13 +283,26 @@ endsnippet
 snippet class "Class declaration template" !b
 /**
  * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`} 
- * @author $2
  */
-class $1
+class $2
 {
     public function ${3:__construct}(${4:$options})
     {
         ${4:// code}
+    }
+}
+$0
+endsnippet
+
+snippet classe "Class declaration template with inheritance" !b
+/**
+ * Class ${1:`!p snip.rv=snip.fn.capitalize().split('.')[0]`} 
+ */
+class ${2:Class} extends ${3:BaseClass}
+{
+    public function ${4:__construct}(${5:$options})
+    {
+        ${5:// code}
     }
 }
 $0
