@@ -174,7 +174,7 @@ snippet ist "image_submit_tag"
 endsnippet
 
 snippet it "image_tag"
-`!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`image_tag "$1${2:.png}"${3:${4:, :title => "${5:title}"}${6:, :class => "${7:class}"}}`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`
+`!p textmate_var('TM_RAILS_TEMPLATE_START_RUBY_EXPR', snip)`image_tag ${1}${2:${3:, :title => "${4:title}"}${5:, :class => "${6:class}"}}`!p textmate_var('TM_RAILS_TEMPLATE_END_RUBY_EXPR', snip)`
 endsnippet
 
 snippet layout "layout"
@@ -295,8 +295,8 @@ snippet else "else (ERB)"
 endsnippet
 
 snippet if "if (ERB)"
-<% if ${1:condition} %>$0
-
+<% if ${1:condition} %>
+$0
 <% end %>
 endsnippet
 

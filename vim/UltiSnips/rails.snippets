@@ -700,6 +700,10 @@ t.timestamps
 t.$0
 endsnippet
 
+snippet v "simple validation" w
+validates ${1:columns}, ${2:constraints}
+endsnippet
+
 snippet vaoif "validates_acceptance_of if"
 validates_acceptance_of :${1:terms}${2:${3:, :accept => "${4:1}"}${5:, :message => "${6:You must accept the terms of service}"}}, :if => proc { |obj| ${7:obj.condition?} }}
 endsnippet
