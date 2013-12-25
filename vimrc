@@ -11,7 +11,7 @@ call vundle#rc()
 Bundle 'flazz/vim-colorschemes'
 "Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
-Bundle 'andi3731/ultisnips'
+Bundle 'andreiglingeanu/ultisnips'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
