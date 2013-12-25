@@ -9,7 +9,7 @@ call vundle#rc()
 "                                  plugins                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-rails'
+"Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
 Bundle 'andi3731/ultisnips'
 Bundle 'mattn/emmet-vim'
@@ -17,7 +17,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 "Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-markdown'
 Bundle 'airblade/vim-rooter'
@@ -26,13 +26,22 @@ Bundle 'xolox/vim-shell'
 Bundle 'xolox/vim-misc'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
-Bundle 'kchmck/vim-coffee-script'
+"Bundle 'kchmck/vim-coffee-script'
 Bundle 'Raimondi/delimitMate'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'scrooloose/nerdtree'
-Bundle 'lfilho/cosco.vim'
-Bundle 'flomotlik/vim-livereload'
+"Bundle 'scrooloose/nerdtree'
+"Bundle 'flomotlik/vim-livereload'
 Bundle 'othree/html5.vim'
+Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'vim-scripts/nginx.vim'
+Bundle 'bilalq/lite-dfm'
+"Bundle 'xuwupeng2000/vim-rails-apidock'
+Bundle 'junegunn/seoul256.vim'
+Bundle 'goldfeld/vim-seek'
+Bundle 'szw/vim-ctrlspace'
+Bundle 'tpope/vim-sleuth'
+Bundle 'tpope/vim-fugitive'
+
 
 filetype plugin indent on
 
@@ -159,6 +168,7 @@ augroup vimrcEx
   autocmd! FileType c  map <leader>r :! clear && make %:r && ./%:r<cr>
   autocmd  FileType c map <leader>v :! clear && valgrind ./%:r<cr>
   autocmd  FileType c map <leader>g :! clear && cgdb ./%:r<cr>
+  autocmd! FileType asm  map <leader>r :! clear && gcc -o %:r -m32 % && ./%:r<cr>
   autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
   autocmd! FileType php  map <leader>r :! clear && php %<cr>
 
@@ -176,13 +186,16 @@ augroup END
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
-set background=light
+set background=dark
 if !has("gui_running")
   " colorscheme t256
   " colorscheme desert256
-  colorscheme devbox-dark-256
+  "colorscheme devbox-dark-256
+  "let g:seoul256_background = 256
+  colorscheme seoul256
+  set background=dark
 else
-  colorscheme badwolf
+  colorscheme codeschool
 endif
 set guifont=PragmataPro\ for\ Powerline\ 10
 
@@ -190,6 +203,8 @@ set guifont=PragmataPro\ for\ Powerline\ 10
 "                                STATUS LINE                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
+set statusline=%<%f\ %y%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               MISC KEY MAPS                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -481,14 +496,19 @@ nmap <F9> mz:execute TabToggle()<CR>'z
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd! bufwritepost .vimrc source $MYVIMRC
-  autocmd bufwritepost .vimrc :AirlineRefresh
+  "autocmd bufwritepost .vimrc :AirlineRefresh
 endif
 nmap <leader>vr :edit $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  airline                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_powerline_fonts = 1
-let g:airline_theme='badwolf'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme='molokai'
+"let g:airline_left_sep='['
+"let g:airline_right_sep=']'
+"let g:airline_linecolumn_prefix = '§'
+"let g:airline_paste_symbol = 'Þ'
+"let g:airline_readonly_symbol = 'Ʀ'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   netrw                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -501,7 +521,23 @@ vmap ,x :%!tidy -q -i --show-errors 0<CR>
 command! Tidy  :%!tidy -q -i --show-errors 0 -xml
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                   cosco                                    "
+"                            rainbox parentheses                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>; :call cosco#commaOrSemiColon()<CR>
-inoremap <silent> <leader>; <ESC>:call cosco#commaOrSemiColon()"<CR>a
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  nginx                                     "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au BufRead,BufNewFile /etc/nginx/*,nginx.conf,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 CtrlSpace                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
+hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
+hi CtrlSpaceFound    ctermfg=220  ctermbg=NONE cterm=bold
+
