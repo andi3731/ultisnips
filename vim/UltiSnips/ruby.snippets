@@ -16,27 +16,19 @@ snippet "^# ?[uU][tT][fF]-?8" "# encoding: UTF-8" r
 $0
 endsnippet
 
-
-
 snippet If "<command> if <expression>"
 ${1:command} if ${0:expression}
 endsnippet
 
-
-
 snippet Unless "<command> unless <expression>"
 ${1:command} unless ${0:expression}
 endsnippet
-
-
 
 snippet if "if <condition> ... end"
 if ${1:condition}
 	${2:# TODO}
 end
 endsnippet
-
-
 
 snippet ife "if <condition> ... else ... end"
 if ${1:condition}
@@ -45,8 +37,6 @@ else
 	${3:# TODO}
 end
 endsnippet
-
-
 
 snippet ifee "if <condition> ... elseif <condition> ... else ... end"
 if ${1:condition}
@@ -58,15 +48,11 @@ else
 end
 endsnippet
 
-
-
 snippet unless "unless <condition> ... end"
 unless ${1:condition}
 	${0:# TODO}
 end
 endsnippet
-
-
 
 snippet unlesse "unless <condition> ... else ... end"
 unless ${1:condition}
@@ -75,8 +61,6 @@ else
 	${0:# TODO}
 end
 endsnippet
-
-
 
 snippet unlesee "unless <condition> ... elseif <condition> ... else ... end"
 unless ${1:condition}
@@ -88,23 +72,17 @@ else
 end
 endsnippet
 
-
-
 snippet "\b(de)?f" "def <name>..." r
 def ${1:function_name}${2: ${3:*args}}
 	${0:# TODO}
 end
 endsnippet
 
-
-
 snippet defi "def initialize ..."
 def initialize${1: ${2:*args}}
 	${0:# TODO}
 end
 endsnippet
-
-
 
 snippet defr "def <name> ... rescue ..."
 def ${1:function_name}${2: ${3:*args}}
@@ -114,13 +92,9 @@ rescue
 end
 endsnippet
 
-
-
 snippet For "(<from>..<to>).each { |<i>| <block> }"
 (${1:from}..${2:to}).each { |${3:i}| ${4:# TODO} }
 endsnippet
-
-
 
 snippet for "(<from>..<to>).each do |<i>| <block> end"
 (${1:from}..${2:to}).each do |${3:i}|
@@ -128,13 +102,9 @@ snippet for "(<from>..<to>).each do |<i>| <block> end"
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Merge!" ".merge!(<other_hash>) { |<key>,<oldval>,<newval>| <block> }" r
 `!p snip.rv=match.group(1)`.merge!(${1:other_hash}) { |${2:key},${3:oldval},${4:newval}| ${5:block} }
 endsnippet
-
-
 
 snippet "(\S+)\.merge!" ".merge!(<other_hash>) do |<key>,<oldval>,<newval>| <block> end" r
 `!p snip.rv=match.group(1)`.merge!(${1:other_hash}) do |${2:key},${3:oldval},${4:newval}|
@@ -142,13 +112,9 @@ snippet "(\S+)\.merge!" ".merge!(<other_hash>) do |<key>,<oldval>,<newval>| <blo
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Del(ete)?_?if" ".delete_if { |<key>,<value>| <block> }" r
 `!p snip.rv=match.group(1)`.delete_if { |${1:key},${2:value}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.del(ete)?_?if" ".delete_if do |<key>,<value>| <block> end" r
 `!p snip.rv=match.group(1)`.delete_if do |${1:key},${2:value}|
@@ -156,13 +122,9 @@ snippet "(\S+)\.del(ete)?_?if" ".delete_if do |<key>,<value>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Keep_?if" ".keep_if { |<key>,<value>| <block> }" r
 `!p snip.rv=match.group(1)`.keep_if { |${1:key},${2:value}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.keep_?if" ".keep_if do <key>,<value>| <block> end" r
 `!p snip.rv=match.group(1)`.keep_if do |${1:key},${2:value}|
@@ -170,13 +132,9 @@ snippet "(\S+)\.keep_?if" ".keep_if do <key>,<value>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Reject" ".reject { |<key>,<value>| <block> }" r
 `!p snip.rv=match.group(1)`.reject { |${1:key},${2:value}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.reject" ".reject do <key>,<value>| <block> end" r
 `!p snip.rv=match.group(1)`.reject do |${1:key},${2:value}|
@@ -184,13 +142,9 @@ snippet "(\S+)\.reject" ".reject do <key>,<value>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Select" ".select { |<item>| <block>}" r
 `!p snip.rv=match.group(1)`.select { |${1:item}| ${2:block} }
 endsnippet
-
-
 
 snippet "(\S+)\.select" ".select do |<item>| <block> end" r
 `!p snip.rv=match.group(1)`.select do |${1:item}|
@@ -198,13 +152,9 @@ snippet "(\S+)\.select" ".select do |<item>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Sort" ".sort { |<a>,<b>| <block> }" r
 `!p snip.rv=match.group(1)`.sort { |${1:a},${2:b}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.sort" ".sort do |<a>,<b>| <block> end" r
 `!p snip.rv=match.group(1)`.sort do |${1:a},${2:b}|
@@ -212,13 +162,9 @@ snippet "(\S+)\.sort" ".sort do |<a>,<b>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Each_?k(ey)?" ".each_key { |<key>| <block> }" r
 `!p snip.rv=match.group(1)`.each_key { |${1:key}| ${2:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.each_?k(ey)?" ".each_key do |key| <block> end" r
 `!p snip.rv=match.group(1)`.each_key do |${1:key}|
@@ -226,13 +172,9 @@ snippet "(\S+)\.each_?k(ey)?" ".each_key do |key| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Each_?val(ue)?" ".each_value { |<value>| <block> }" r
 `!p snip.rv=match.group(1)`.each_value { |${1:value}| ${2:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.each_?val(ue)?" ".each_value do |<value>| <block> end" r
 `!p snip.rv=match.group(1)`.each_value do |${1:value}|
@@ -240,13 +182,9 @@ snippet "(\S+)\.each_?val(ue)?" ".each_value do |<value>| <block> end" r
 end
 endsnippet
 
-
-
 snippet Each "<elements>.each { |<element>| <block> }"
 ${1:elements}.each { |${2:${1/s$//}}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet each "<elements>.each do |<element>| <block> end"
 ${1:elements}.each do |${2:${1/s$//}}|
@@ -254,22 +192,15 @@ ${1:elements}.each do |${2:${1/s$//}}|
 end
 endsnippet
 
-
-
 snippet each_?s(lice)? "<array>.each_slice(n) do |slice| <block> end"
 each_slice(${1:2}) do |${2:slice}|
 	${0:# TODO}
 end
 endsnippet
 
-
-
 snippet Each_?s(lice)? "<array>.each_slice(n) { |slice| <block> }"
 each_slice(${1:2}) { |${2:slice}| ${3:# TODO} }
 endsnippet
-
-
-
 
 snippet "(\S+)\.Map" ".map { |<element>| <block> }" r
 `!p snip.rv=match.group(1)`.map { |${1:`!p
@@ -282,8 +213,6 @@ except:
 	snip.rv = 'element'
 `}| ${2:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.map" ".map do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.map do |${1:`!p
@@ -299,8 +228,6 @@ except:
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Rev(erse)?_?each" ".reverse_each { |<element>| <block> }" r
 `!p snip.rv=match.group(1)`.reverse_each { |${1:`!p
 element_name = match.group(1).lstrip('$@')
@@ -312,8 +239,6 @@ except:
 	snip.rv = 'element'
 `}| ${2:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.rev(erse)?_?each" ".reverse_each do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.reverse_each do |${1:`!p
@@ -329,8 +254,6 @@ except:
 end
 endsnippet
 
-
-
 snippet "(\S+)\.Each" ".each { |<element>| <block> }" r
 `!p snip.rv=match.group(1)`.each { |${1:`!p
 element_name = match.group(1).lstrip('$@')
@@ -342,8 +265,6 @@ except:
 	snip.rv = 'element'
 `}| ${2:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.each" ".each do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.each do |${1:`!p
@@ -359,9 +280,6 @@ except:
 end
 endsnippet
 
-
-
-
 snippet "(\S+)\.Each_w(ith)?_?i(ndex)?" ".each_with_index { |<element>,<i>| <block> }" r
 `!p snip.rv=match.group(1)`.each_with_index { |${1:`!p
 element_name = match.group(1).lstrip('$@')
@@ -373,8 +291,6 @@ except:
 	snip.rv = 'element'
 `},${2:i}| ${3:# TODO} }$0
 endsnippet
-
-
 
 snippet "(\S+)\.each_?w(ith)?_?i(ndex)?" ".each_with_index do |<element>,<i>| <block> end" r
 `!p snip.rv=match.group(1)`.each_with_index do |${1:`!p
@@ -390,14 +306,9 @@ except:
 end
 endsnippet
 
-
-
-
 snippet "(\S+)\.Each_?p(air)?"  ".each_pair { |<key>,<value>| <block> }" r
 `!p snip.rv=match.group(1)`.each_pair { |${1:key},${2:value}| ${3:# TODO} }
 endsnippet
-
-
 
 snippet "(\S+)\.each_?p(air)?" ".each_pair do |<key>,<value>| <block> end" r
 `!p snip.rv=match.group(1)`.each_pair do |${1:key},${2:value}|
@@ -405,25 +316,17 @@ snippet "(\S+)\.each_?p(air)?" ".each_pair do |<key>,<value>| <block> end" r
 end
 endsnippet
 
-
-
 snippet "(\S+)\.sub" ".sub(<expression>) { <block> }" r
 `!p snip.rv=match.group(1)`.sub(${1:expression}) { ${2:"replace_with"} }
 endsnippet
-
-
 
 snippet "(\S+)\.gsub" ".gsub(<expression>) { <block> }" r
 `!p snip.rv=match.group(1)`.gsub(${1:expression}) { ${2:"replace_with"} }
 endsnippet
 
-
-
 snippet "(\S+)\.index" ".index { |item| <block> }" r
 `!p snip.rv=match.group(1)`.index { |${1:item}| ${2:block} }
 endsnippet
-
-
 
 snippet "(\S+)\.Index" ".index do |item| ... end" r
 `!p snip.rv=match.group(1)`.index do |${1:item}|
@@ -431,14 +334,11 @@ snippet "(\S+)\.Index" ".index do |item| ... end" r
 end
 endsnippet
 
-
-
 snippet do "do without variable" i
 do
 	$1
 end
 endsnippet
-
 
 snippet dov "do with variable" i
 do |${1:var}|
@@ -446,14 +346,11 @@ do |${1:var}|
 end
 endsnippet
 
-
-
 snippet Do "do ... end" i
 do
 	$0
 end
 endsnippet
-
 
 snippet until "until <expression> ... end"
 until ${1:expression}
@@ -461,15 +358,11 @@ until ${1:expression}
 end
 endsnippet
 
-
-
 snippet Until "begin ... end until <expression>"
 begin
 	${0:# TODO}
 end until ${1:expression}
 endsnippet
-
-
 
 snippet while "while <expression> ... end"
 while ${1:expression}
@@ -477,33 +370,23 @@ while ${1:expression}
 end
 endsnippet
 
-
-
 snippet While "begin ... end while <expression>"
 begin
 	${0:# TODO}
 end while ${1:expression}
 endsnippet
 
-
-
 snippet "\b(r|attr)" "attr_reader :<attr_names>" r
 attr_reader :${0:attr_names}
 endsnippet
-
-
 
 snippet "\b(w|attr)" "attr_writer :<attr_names>" r
 attr_writer :${0:attr_names}
 endsnippet
 
-
-
 snippet "\b(rw|attr)" "attr_accessor :<attr_names>" r
 attr_accessor :${0:attr_names}
 endsnippet
-
-
 
 snippet begin "begin ... rescue ... end"
 begin
@@ -512,8 +395,6 @@ rescue
 	${0:# TODO}
 end
 endsnippet
-
-
 
 snippet begin "begin ... rescue ... else ... ensure ... end"
 begin
@@ -529,16 +410,12 @@ ensure
 end
 endsnippet
 
-
-
 snippet rescue
 rescue Exception => e
 	puts e.message
 	puts e.backtrace.inspect
 	${0:# Rescue}
 endsnippet
-
-
 
 snippet "\b(case|sw(itch)?)" "case <variable> when <expression> ... end" r
 case ${1:variable}
@@ -547,13 +424,9 @@ $0
 end
 endsnippet
 
-
-
 snippet alias "alias :<new_name> :<old_name>"
 alias :${1:new_name} :${2:old_name}
 endsnippet
-
-
 
 snippet class "class <class_name> def initialize ... end end"
 class ${1:class_name}
@@ -563,20 +436,211 @@ class ${1:class_name}
 end
 endsnippet
 
-
-
 snippet module "module"
 module ${1:module_name}
 	$0
 end
 endsnippet
 
-
-
 snippet ###
 =begin
   $0
 =end
+endsnippet
+
+###################
+#  Other snippets #
+###################
+snippet end "end"
+__END__
+endsnippet
+
+snippet deft "Define test"
+def test_${1:case_name}
+	${0}
+end
+endsnippet
+
+snippet cl "class"
+class ${1}
+	${0}
+end
+endsnippet
+
+snippet enum "Enumerable"
+include Enumerable
+
+def each(&block)
+	${0}
+end
+endsnippet
+
+snippet Comp "Comp"
+include Comparable
+
+def <=>(other)
+	$0
+end
+endsnippet
+
+snippet Forw- "Forw-"
+extend Forwardable
+endsnippet
+
+snippet defs "defs"
+def self.${1:class_method_name}
+	$0
+end
+endsnippet
+
+snippet defmm "def method_missing"
+def method_missing(meth, *args, &block)
+	$0
+end
+endsnippet
+
+snippet am "am"
+alias_method :${1:new_name}, :${2:old_name}
+endsnippet
+
+snippet fex "fex"
+File.expand_path(
+endsnippet
+
+snippet fx "File.expand_path"
+File.expand_path(
+endsnippet
+
+snippet ./ "relative path"
+File.expand_path('../${1}', __FILE__)${0}
+endsnippet
+
+snippet ../ "relative path"
+File.expand_path('../../${1}', __FILE__)${0}
+endsnippet
+
+snippet fj "fj"
+File.join(
+endsnippet
+
+snippet . "."
+File.dirname(__FILE__)
+endsnippet
+
+snippet rt "respond to (Rails)"
+respond_to do |format|
+  format.html${1}
+end${0}
+endsnippet
+
+######################
+#  testing snippets  #
+######################
+
+snippet tc "tc"
+require "test/unit"
+
+require "${1:library_file_name}"
+
+class Test${2:$1} < Test::Unit::TestCase
+	def test_${3:case_name}
+		$0
+	end
+end
+endsnippet
+
+snippet ts "ts"
+require "test/unit"
+
+require "tc_${1:test_case_file}"
+require "tc_${2:test_case_file}"$0
+endsnippet
+
+snippet as "as"
+assert(${1:test}, "${2:Failure message.}")$0
+endsnippet
+
+snippet ase "ase"
+assert_equal(${1:expected}, ${2:actual})$0
+endsnippet
+
+snippet asne "asne"
+assert_not_equal(${1:unexpected}, ${2:actual})$0
+endsnippet
+
+snippet asid "asid"
+assert_in_delta(${1:expected_float}, ${2:actual_float}, ${3:2 ** -20})$0
+endsnippet
+
+snippet asio "asio"
+assert_instance_of(${1:ExpectedClass}, ${2:actual_instance})$0
+endsnippet
+
+snippet asko "asko"
+assert_kind_of(${1:ExpectedKind}, ${2:actual_instance})$0
+endsnippet
+
+snippet asn "asn"
+assert_nil(${1:instance})$0
+endsnippet
+
+snippet asnn "asnn"
+assert_not_nil(${1:instance})$0
+endsnippet
+
+snippet asm "asm"
+assert_match(/${1:expected_pattern}/, ${2:actual_string})$0
+endsnippet
+
+snippet asnm "asnm"
+assert_no_match(/${1:unexpected_pattern}/, ${2:actual_string})$0
+endsnippet
+
+snippet aso "aso"
+assert_operator(${1:left}, :${2:operator}, ${3:right})$0
+endsnippet
+
+snippet asr "asr"
+assert_raise(${1:Exception}) { ${2} }
+endsnippet
+
+snippet asnr "asnr"
+assert_nothing_raised(${1:Exception}) { ${2} }
+endsnippet
+
+snippet asrt "asrt"
+assert_respond_to(${1:object}, :${2:method})$0
+endsnippet
+
+snippet ass "assert_same(..)"
+assert_same(${1:expected}, ${2:actual})$0
+endsnippet
+
+snippet ass "assert_send(..)"
+assert_send([${1:object}, :${2:message}, ${3:args}])$0
+endsnippet
+
+snippet asns "asns"
+assert_not_same(${1:unexpected}, ${2:actual})$0
+endsnippet
+
+snippet ast "ast"
+assert_throws(:${1:expected}) { ${2} }
+endsnippet
+
+snippet asnt "asnt"
+assert_nothing_thrown { ${1} }
+endsnippet
+
+###############
+#  Rake Task  #
+###############
+
+snippet tas "tas"
+desc "${1:Task description}"
+task :${2:task_name => [:dependent, :tasks]} do
+	$0
+end
 endsnippet
 
 ##########################
