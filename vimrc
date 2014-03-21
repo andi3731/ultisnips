@@ -8,39 +8,47 @@ call vundle#rc()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  plugins                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Bundle 'flazz/vim-colorschemes'
-"Bundle 'tpope/vim-rails'
+"Bundle 'flazz/vim-colorschemes'
+Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
 Bundle 'andreiglingeanu/ultisnips'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 "Bundle 'bling/vim-airline'
-"Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-markdown'
 Bundle 'airblade/vim-rooter'
 Bundle 't9md/vim-ruby-xmpfilter'
 Bundle 'xolox/vim-shell'
 Bundle 'xolox/vim-misc'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-fugitive'
 "Bundle 'kchmck/vim-coffee-script'
 Bundle 'Raimondi/delimitMate'
-Bundle 'terryma/vim-multiple-cursors'
+"Bundle 'ervandew/matchem'
+"Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'scrooloose/nerdtree'
 "Bundle 'flomotlik/vim-livereload'
-Bundle 'othree/html5.vim'
-Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'othree/html5.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
 "Bundle 'vim-scripts/nginx.vim'
-Bundle 'bilalq/lite-dfm'
+"Bundle 'bilalq/lite-dfm'
 "Bundle 'xuwupeng2000/vim-rails-apidock'
-Bundle 'junegunn/seoul256.vim'
-Bundle 'goldfeld/vim-seek'
-Bundle 'szw/vim-ctrlspace'
+"Bundle 'junegunn/seoul256.vim'
+"Bundle 'goldfeld/vim-seek'
 Bundle 'tpope/vim-sleuth'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'tpope/vim-rake'
+Bundle 'tpope/vim-vinegar'
+Bundle 'xsbeats/vim-blade'
+"Bundle 'vim-scripts/dbext.vim'
+"Bundle 'marijnh/tern_for_vim'
+"Bundle '29decibel/vim-stringify'
+Bundle 'depuracao/vim-rdoc'
+Bundle 'evidens/vim-twig'
+
 
 
 filetype plugin indent on
@@ -71,12 +79,13 @@ set hlsearch
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 set cursorline
+set colorcolumn=80
 set cmdheight=1
 set autoindent
 "set smartindent
 set switchbuf=useopen
 set showtabline=1
-set winwidth=79
+"set winwidth=79
 "set t_ti= t_te=
 set backup
 set backupdir=~/.vim-tmp,~/.tmp,/var/tmp,/tmp
@@ -141,9 +150,9 @@ augroup vimrcEx
 
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   autocmd FileType ruby,pascal,haml,eruby,yaml,html,sass,cucumber,css set ai sw=2 sts=2 et
   autocmd FileType python,javascript set ai sw=4 sts=4 et
@@ -156,12 +165,12 @@ augroup vimrcEx
   autocmd! FileType mkd setlocal syn=off
 
   autocmd! CmdwinEnter * :unmap <cr>
-  autocmd! CmdwinLeave * :call MapCR
+  autocmd! CmdwinLeave * :call MapCR()
 
 
   " Clear the search buffer when hitting return
   function! MapCR()
-      nnoremap <cr> :nohlsearch<cr>
+    nnoremap <cr> :nohlsearch<cr>
   endfunction
   call MapCR()
 
@@ -171,6 +180,11 @@ augroup vimrcEx
   autocmd! FileType asm  map <leader>r :! clear && gcc -o %:r -m32 % && ./%:r<cr>
   autocmd! FileType pascal map <leader>r :! clear && pc %:r && ./%:r<cr>
   autocmd! FileType php  map <leader>r :! clear && php %<cr>
+  autocmd! FileType javascript  map <leader>r :! clear && node %<cr>
+  autocmd! FileType perl  map <leader>r :! clear && perl %<cr>
+
+  autocmd FileType scheme map <leader>r :! clear && racket -e '(load "%")'<cr>
+  "autocmd FileType scheme map <leader>r :! clear && racket -e '(load "/home/andrei/Projects/tls/tls.ss") (load "%")'<cr>
 
   au BufRead,BufNewFile *.ru setfiletype ruby
   " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
@@ -178,6 +192,8 @@ augroup vimrcEx
   " .ru and .thor are Ruby.
   au BufRead,BufNewFile *.ru set filetype=ruby
   au BufRead,BufNewFile *.thor set filetype=ruby
+  au BufRead,BufNewFile Guardfile set filetype=ruby
+  au BufRead,BufNewFile Rakefile set filetype=ruby
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,7 +208,8 @@ if !has("gui_running")
   " colorscheme desert256
   "colorscheme devbox-dark-256
   "let g:seoul256_background = 256
-  colorscheme seoul256
+  colorscheme molokai
+  let g:molokai_original=1
   set background=dark
 else
   colorscheme codeschool
@@ -203,7 +220,8 @@ set guifont=PragmataPro\ for\ Powerline\ 10
 "                                STATUS LINE                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
-set statusline=%<%f\ %y%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+"set statusline=%<%f\ %y%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %y%m%r%=%-14.(%l,%c%V%)\ %P
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               MISC KEY MAPS                                "
@@ -223,6 +241,7 @@ nnoremap <Space> za
 imap <c-l> <space>=><space>
 " Scoala, PASCAL
 autocmd FileType pascal inoremap <C-l> <space>:=<space>
+autocmd FileType st inoremap <C-l> <space>:=<space>
 " delimitMate
 imap <C-K> <Plug>delimitMateS-Tab
 let delimitMate_expand_cr=1
@@ -243,6 +262,9 @@ nmap <leader>l :set list!<cr>
 " Run ruby
 autocmd! FileType ruby map <Leader>r :!clear && ruby %<cr>
 
+" Upcase a WORD
+imap <C-u> <ESC>bgUeea
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         ARROW KES ARE UNCCEPTABLE                          "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -254,25 +276,31 @@ imap <Left> <esc>:echo "no!"<cr>i
 imap <Right> <esc>:echo "no!"<cr>i
 imap <Up> <esc>:echo "no!"<cr>i
 imap <Down> <esc>:echo "no!"<cr>i
+cnoremap <Left> <esc>:echo "no!"<cr>i
+cnoremap <Right> <esc>:echo "no!"<cr>i
+cnoremap <Up> <esc>:echo "no!"<cr>i
+cnoremap <Down> <esc>:echo "no!"<cr>i
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                  OPEN FILES IN DIRECTORY OF CURRENT FILE                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR><CR>
-map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR><CR>
-map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR><CR>
+"map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR><CR>
+"map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR><CR>
+"map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR><CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            RENAME CURRENT FILE                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <leader>n :call RenameFile()<cr>
 
@@ -314,13 +342,13 @@ map <leader>o gx
 "  syntastic  "
 """""""""""""""
 let g:syntastic_mode_map = { 'mode': 'active',
-                               \ 'passive_filetypes': ['nxc', 'java', 'scss'] }
+      \ 'passive_filetypes': ['nxc', 'java', 'scss'] }
 
 """"""""""""""
 "  nerdtree  "
 """"""""""""""
-nnoremap <F3> :NERDTreeMirror<CR>
-silent! map <F2> :NERDTreeToggle<cr>
+"nnoremap <F3> :NERDTreeMirror<CR>
+"silent! map <F2> :NERDTreeToggle<cr>
 "Show hidden files in NerdTree
 let NERDTreeShowHidden=1
 let g:NERDTreeHijackNetrw=0
@@ -391,11 +419,11 @@ let g:ctrlp_working_path_mode=0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              multiple cursors                              "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-n>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-let g:multi_cursor_prev_key='<C-m>'
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-n>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+"let g:multi_cursor_prev_key='<C-m>'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       PROMOTE VARIABLE TO RSPEC LET                        "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -504,6 +532,7 @@ nmap <leader>vr :edit $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme='molokai'
+"let g:airline_theme='luna'
 "let g:airline_left_sep='['
 "let g:airline_right_sep=']'
 "let g:airline_linecolumn_prefix = '§'
@@ -523,10 +552,10 @@ command! Tidy  :%!tidy -q -i --show-errors 0 -xml
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            rainbox parentheses                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  nginx                                     "
@@ -540,4 +569,11 @@ au BufRead,BufNewFile /etc/nginx/*,nginx.conf,/usr/local/nginx/conf/* if &ft == 
 hi CtrlSpaceSelected term=reverse ctermfg=187  ctermbg=23  cterm=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244  ctermbg=232 cterm=NONE
 hi CtrlSpaceFound    ctermfg=220  ctermbg=NONE cterm=bold
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 Stringify                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>g :call Stringify()<CR>
+
+
 

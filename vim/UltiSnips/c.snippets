@@ -18,6 +18,12 @@ ${VISUAL}${0:${VISUAL/(.*)/(?1::code)/}}
 #endif
 endsnippet
 
+snippet ifdef "#if #endif" !b
+#ifdef ${1:0}
+$0
+#endif
+endsnippet
+
 snippet inc "#include local header (inc)"
 #include "${1:`!p snip.rv = snip.basename + '.h'`}"
 endsnippet
