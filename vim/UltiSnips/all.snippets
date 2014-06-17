@@ -64,6 +64,9 @@ def _get_comment_format():
     commentformat = _parse_comments(vim.eval("&comments"))[0]
     _commentDict[ft] = commentformat
 
+    if _commentDict.has_key("javascript"):
+        _commentDict["java"] = _commentDict["javascript"]
+
     return commentformat
 
 

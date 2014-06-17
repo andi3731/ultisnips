@@ -162,6 +162,15 @@ snip.rv = snip.basename or "untitled"`} {
 }
 endsnippet
 
+snippet start "Start basic class with main method"
+public class ${1:`!p
+snip.rv = snip.basename or "untitled"`} {
+    public static void main(String[] args)`!p nl(snip)`{
+	    $0
+    }
+}
+endsnippet
+
 snippet cos "constant string" b
 public static final String ${1:var} = "$2";$0
 endsnippet
@@ -318,6 +327,12 @@ ${1:private} ${2:void} ${3:method}(${4}) {
 }
 endsnippet
 
+snippet static "Static public" w
+static public ${1:void} ${2:method}(${4}) {
+	$0
+}
+endsnippet
+
 snippet md "Method With javadoc" !b
 /**
  * ${7:Short Description}`!p
@@ -368,7 +383,7 @@ snippet p "print" b
 System.out.print($1);$0
 endsnippet
 
-snippet pl "println"  b
+snippet pl "println"  w
 System.out.println($1);$0
 endsnippet
 

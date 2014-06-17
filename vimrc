@@ -8,7 +8,7 @@ call vundle#rc()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  plugins                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Bundle 'flazz/vim-colorschemes'
+Bundle 'flazz/vim-colorschemes'
 Bundle 'tpope/vim-rails'
 Bundle 'kien/ctrlp.vim'
 Bundle 'andreiglingeanu/ultisnips'
@@ -18,7 +18,6 @@ Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 "Bundle 'scrooloose/syntastic'
 "Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-markdown'
 Bundle 'airblade/vim-rooter'
 Bundle 't9md/vim-ruby-xmpfilter'
@@ -27,7 +26,6 @@ Bundle 'xolox/vim-misc'
 Bundle 'tpope/vim-surround'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'kchmck/vim-coffee-script'
-Bundle 'Raimondi/delimitMate'
 "Bundle 'ervandew/matchem'
 "Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'scrooloose/nerdtree'
@@ -45,9 +43,11 @@ Bundle 'tpope/vim-vinegar'
 Bundle 'xsbeats/vim-blade'
 "Bundle 'vim-scripts/dbext.vim'
 "Bundle 'marijnh/tern_for_vim'
-"Bundle '29decibel/vim-stringify'
+Bundle '29decibel/vim-stringify'
 Bundle 'depuracao/vim-rdoc'
 Bundle 'evidens/vim-twig'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-endwise'
 
 
 
@@ -183,6 +183,10 @@ augroup vimrcEx
   autocmd! FileType javascript  map <leader>r :! clear && node %<cr>
   autocmd! FileType perl  map <leader>r :! clear && perl %<cr>
 
+  command! -nargs=* -complete=file -bar JavaCompile ! clear && javac-algs4 % && java-algs4 %:r <args>
+
+  autocmd! FileType java  map <leader>r :JavaCompile<space>
+
   autocmd FileType scheme map <leader>r :! clear && racket -e '(load "%")'<cr>
   "autocmd FileType scheme map <leader>r :! clear && racket -e '(load "/home/andrei/Projects/tls/tls.ss") (load "%")'<cr>
 
@@ -242,9 +246,6 @@ imap <c-l> <space>=><space>
 " Scoala, PASCAL
 autocmd FileType pascal inoremap <C-l> <space>:=<space>
 autocmd FileType st inoremap <C-l> <space>:=<space>
-" delimitMate
-imap <C-K> <Plug>delimitMateS-Tab
-let delimitMate_expand_cr=1
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -263,7 +264,7 @@ nmap <leader>l :set list!<cr>
 autocmd! FileType ruby map <Leader>r :!clear && ruby %<cr>
 
 " Upcase a WORD
-imap <C-u> <ESC>bgUeea
+imap <C-u> <C-c>bgUeea
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         ARROW KES ARE UNCCEPTABLE                          "
@@ -395,11 +396,13 @@ let g:emmet_html5=1
 let g:use_emmet_complete_tag = 1
 map <leader>y <C-y>n
 map <leader>Y <C-y>N
+vmap <leader>w <C-y>,
 
 """""""""""""""""
 "  delimitmate  "
 """""""""""""""""
-let delimitMate_expand_cr = 1
+imap <C-K> <Plug>delimitMateS-Tab
+let delimitMate_expand_cr=1
 
 """""""""""""""
 "  ultisnips  "
